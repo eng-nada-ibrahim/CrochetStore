@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "HBSnJVF9AKU=",
+  "dgSpecHash": "GWbNVRbEw6c=",
   "success": true,
   "projectFilePath": "E:\\Material-20260717T142356Z-1-001\\Material\\crochett\\CrochetStore.csproj",
   "expectedPackageFiles": [
@@ -20,10 +20,11 @@
     "C:\\Users\\Mohey El Din Yassin\\.nuget\\packages\\microsoft.codeanalysis.workspaces.msbuild\\4.8.0\\microsoft.codeanalysis.workspaces.msbuild.4.8.0.nupkg.sha512",
     "C:\\Users\\Mohey El Din Yassin\\.nuget\\packages\\microsoft.data.sqlclient\\6.0.0-preview3.24332.3\\microsoft.data.sqlclient.6.0.0-preview3.24332.3.nupkg.sha512",
     "C:\\Users\\Mohey El Din Yassin\\.nuget\\packages\\microsoft.data.sqlclient.sni.runtime\\6.0.0-preview1.24226.4\\microsoft.data.sqlclient.sni.runtime.6.0.0-preview1.24226.4.nupkg.sha512",
-    "C:\\Users\\Mohey El Din Yassin\\.nuget\\packages\\microsoft.entityframeworkcore\\10.0.0-preview.1.25081.1\\microsoft.entityframeworkcore.10.0.0-preview.1.25081.1.nupkg.sha512",
-    "C:\\Users\\Mohey El Din Yassin\\.nuget\\packages\\microsoft.entityframeworkcore.abstractions\\10.0.0-preview.1.25081.1\\microsoft.entityframeworkcore.abstractions.10.0.0-preview.1.25081.1.nupkg.sha512",
+    "C:\\Users\\Mohey El Din Yassin\\.nuget\\packages\\microsoft.entityframeworkcore\\10.0.12\\microsoft.entityframeworkcore.10.0.12.nupkg.sha512",
+    "C:\\Users\\Mohey El Din Yassin\\.nuget\\packages\\microsoft.entityframeworkcore.abstractions\\10.0.12\\microsoft.entityframeworkcore.abstractions.10.0.12.nupkg.sha512",
+    "C:\\Users\\Mohey El Din Yassin\\.nuget\\packages\\microsoft.entityframeworkcore.analyzers\\10.0.12\\microsoft.entityframeworkcore.analyzers.10.0.12.nupkg.sha512",
     "C:\\Users\\Mohey El Din Yassin\\.nuget\\packages\\microsoft.entityframeworkcore.design\\10.0.0-preview.1.25081.1\\microsoft.entityframeworkcore.design.10.0.0-preview.1.25081.1.nupkg.sha512",
-    "C:\\Users\\Mohey El Din Yassin\\.nuget\\packages\\microsoft.entityframeworkcore.relational\\10.0.0-preview.1.25081.1\\microsoft.entityframeworkcore.relational.10.0.0-preview.1.25081.1.nupkg.sha512",
+    "C:\\Users\\Mohey El Din Yassin\\.nuget\\packages\\microsoft.entityframeworkcore.relational\\10.0.12\\microsoft.entityframeworkcore.relational.10.0.12.nupkg.sha512",
     "C:\\Users\\Mohey El Din Yassin\\.nuget\\packages\\microsoft.entityframeworkcore.sqlserver\\10.0.0-preview.1.25081.1\\microsoft.entityframeworkcore.sqlserver.10.0.0-preview.1.25081.1.nupkg.sha512",
     "C:\\Users\\Mohey El Din Yassin\\.nuget\\packages\\microsoft.entityframeworkcore.tools\\10.0.0-preview.1.25081.1\\microsoft.entityframeworkcore.tools.10.0.0-preview.1.25081.1.nupkg.sha512",
     "C:\\Users\\Mohey El Din Yassin\\.nuget\\packages\\microsoft.extensions.dependencymodel\\10.0.0-preview.1.25080.5\\microsoft.extensions.dependencymodel.10.0.0-preview.1.25080.5.nupkg.sha512",
@@ -93,7 +94,7 @@
     {
       "code": "NU1608",
       "level": "Warning",
-      "message": "Detected package version outside of dependency constraint: Pomelo.EntityFrameworkCore.MySql 9.0.0 requires Microsoft.EntityFrameworkCore.Relational (>= 9.0.0 && <= 9.0.999) but version Microsoft.EntityFrameworkCore.Relational 10.0.0-preview.1.25081.1 was resolved.",
+      "message": "Detected package version outside of dependency constraint: Pomelo.EntityFrameworkCore.MySql 9.0.0 requires Microsoft.EntityFrameworkCore.Relational (>= 9.0.0 && <= 9.0.999) but version Microsoft.EntityFrameworkCore.Relational 10.0.12 was resolved.",
       "projectPath": "E:\\Material-20260717T142356Z-1-001\\Material\\crochett\\CrochetStore.csproj",
       "warningLevel": 1,
       "filePath": "E:\\Material-20260717T142356Z-1-001\\Material\\crochett\\CrochetStore.csproj",

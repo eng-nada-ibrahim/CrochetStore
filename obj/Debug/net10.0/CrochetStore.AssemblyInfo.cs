@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("CrochetWebRun")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+516470dd07abe3b6a00baa955689669c55ae09f5")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+bf2c9ffa888ea84055751e8ccbdfbbfba6835b7d")]
 [assembly: System.Reflection.AssemblyProductAttribute("CrochetWebRun")]
 [assembly: System.Reflection.AssemblyTitleAttribute("CrochetWebRun")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
