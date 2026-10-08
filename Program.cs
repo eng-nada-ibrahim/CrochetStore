@@ -105,11 +105,11 @@ using (var scope = app.Services.CreateScope())
     {
         var context = services.GetRequiredService<ApplicationDbContext>();
 
-        // إنشاء كل الجداول تلقائياً في MySQL إذا لم تكن موجودة
-        await context.Database.EnsureCreatedAsync();
+        // إنشاء جميع الجداول وتطبيق التغييرات تلقائياً
+        context.Database.EnsureCreated();
 
         // Seed Roles & Default Admin
-        await DbInitializer.SeedRolesAndAdminAsync(services);
+        DbInitializer.SeedRolesAndAdminAsync(services).GetAwaiter().GetResult();
     }
     catch (Exception ex)
     {
