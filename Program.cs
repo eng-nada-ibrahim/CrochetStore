@@ -5,12 +5,15 @@ using CrochetStore.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 
-// 1. Add Database Context with SQL Server
-var connectionString = builder.Configuration.GetConnectionString("DefaultConnection") 
+// 1. Add Database Context with MySQL
+var connectionString = builder.Configuration.GetConnectionString("DefaultConnection")
     ?? throw new InvalidOperationException("Connection string 'DefaultConnection' not found.");
 
 builder.Services.AddDbContext<ApplicationDbContext>(options =>
-    options.UseSqlServer(connectionString));
+    options.UseMySql(
+        connectionString,
+        ServerVersion.AutoDetect(connectionString)
+    ));
 
 // 2. Add ASP.NET Core Identity
 builder.Services.AddIdentity<ApplicationUser, IdentityRole>(options =>
@@ -34,6 +37,7 @@ builder.Services.ConfigureApplicationCookie(options =>
 
 // 3. Add Session Support & HttpContextAccessor for Cart
 builder.Services.AddDistributedMemoryCache();
+
 builder.Services.AddSession(options =>
 {
     options.IdleTimeout = TimeSpan.FromHours(48);
@@ -45,6 +49,9 @@ builder.Services.AddHttpContextAccessor();
 builder.Services.AddScoped<ICartService, CartService>();
 
 // 4. Add MVC Controllers & Views
+var port = Environment.GetEnvironmentVariable("PORT") ?? "8080";
+builder.WebHost.UseUrls($"http://*:{port}");
+
 builder.Services.AddControllersWithViews();
 
 var app = builder.Build();
@@ -58,11 +65,9 @@ if (!app.Environment.IsDevelopment())
 
 app.UseHttpsRedirection();
 app.UseStaticFiles();
-
 app.UseRouting();
 
 app.UseSession();
-
 app.UseAuthentication();
 app.UseAuthorization();
 
@@ -83,8 +88,8 @@ using (var scope = app.Services.CreateScope())
     try
     {
         var context = services.GetRequiredService<ApplicationDbContext>();
-        // Ensure Database is Created & Migrated
-        await context.Database.EnsureCreatedAsync();
+        // Migration تلقائي بدلاً من EnsureCreated حتى تنشأ جميع الجداول والجداول الخاصة بـ Identity
+        await context.Database.MigrateAsync();
 
         // Seed Roles & Default Admin
         await DbInitializer.SeedRolesAndAdminAsync(services);
