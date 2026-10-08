@@ -144,7 +144,6 @@ E:\Material-20260717T142356Z-1-001\Material\crochett\obj\Debug\net10.0\staticweb
 E:\Material-20260717T142356Z-1-001\Material\crochett\obj\Debug\net10.0\swae.build.ex.cache
 E:\Material-20260717T142356Z-1-001\Material\crochett\obj\Debug\net10.0\CrochetS.62DF47D2.Up2Date
 E:\Material-20260717T142356Z-1-001\Material\crochett\obj\Debug\net10.0\CrochetStore.genruntimeconfig.cache
-E:\Material-20260717T142356Z-1-001\Material\crochett\obj\Debug\net10.0\staticwebassets.upToDateCheck.txt
 E:\Material-20260717T142356Z-1-001\Material\crochett\bin\Debug\net10.0\CrochetWebRun.staticwebassets.runtime.json
 E:\Material-20260717T142356Z-1-001\Material\crochett\bin\Debug\net10.0\CrochetWebRun.staticwebassets.endpoints.json
 E:\Material-20260717T142356Z-1-001\Material\crochett\bin\Debug\net10.0\CrochetWebRun.exe
@@ -224,3 +223,5 @@ E:\Material-20260717T142356Z-1-001\Material\crochett\obj\Debug\net10.0\refint\Cr
 E:\Material-20260717T142356Z-1-001\Material\crochett\obj\Debug\net10.0\CrochetWebRun.pdb
 E:\Material-20260717T142356Z-1-001\Material\crochett\obj\Debug\net10.0\ref\CrochetWebRun.dll
 E:\Material-20260717T142356Z-1-001\Material\crochett\obj\Debug\net10.0\CrochetStore.sourcelink.json
+E:\Material-20260717T142356Z-1-001\Material\crochett\bin\Debug\net10.0\MySqlConnector.dll
+E:\Material-20260717T142356Z-1-001\Material\crochett\bin\Debug\net10.0\Pomelo.EntityFrameworkCore.MySql.dll
