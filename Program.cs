@@ -5,9 +5,25 @@ using CrochetStore.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 
-// 1. Add Database Context with MySQL
-var connectionString = builder.Configuration.GetConnectionString("DefaultConnection")
+// 1. Add Database Context with MySQL (URL Auto-Fix)
+var rawConnectionString = builder.Configuration.GetConnectionString("DefaultConnection")
     ?? throw new InvalidOperationException("Connection string 'DefaultConnection' not found.");
+
+string connectionString = rawConnectionString;
+
+// إذا كان الرابط يبدأ بـ mysql:// يتم تحويله تلقائياً للصيغة التي تفهمها المكتبة
+if (rawConnectionString.StartsWith("mysql://", StringComparison.OrdinalIgnoreCase))
+{
+    var uri = new Uri(rawConnectionString);
+    var userInfo = uri.UserInfo.Split(':');
+    var user = userInfo.Length > 0 ? userInfo[0] : "";
+    var password = userInfo.Length > 1 ? userInfo[1] : "";
+    var dbName = uri.AbsolutePath.TrimStart('/');
+    var host = uri.Host;
+    var port = uri.Port > 0 ? uri.Port : 3306;
+
+    connectionString = $"Server={host};Port={port};Database={dbName};Uid={user};Pwd={password};SslMode=Preferred;";
+}
 
 builder.Services.AddDbContext<ApplicationDbContext>(options =>
     options.UseMySql(
@@ -88,10 +104,7 @@ using (var scope = app.Services.CreateScope())
     try
     {
         var context = services.GetRequiredService<ApplicationDbContext>();
-        // Migration تلقائي بدلاً من EnsureCreated حتى تنشأ جميع الجداول والجداول الخاصة بـ Identity
         await context.Database.MigrateAsync();
-
-        // Seed Roles & Default Admin
         await DbInitializer.SeedRolesAndAdminAsync(services);
     }
     catch (Exception ex)
