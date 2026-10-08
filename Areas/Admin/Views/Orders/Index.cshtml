@@ -1,0 +1,62 @@
+@model IEnumerable<CrochetStore.Models.Order>
+@{
+    ViewData["Title"] = "إدارة طلبات المشغولات اليدوية";
+    var currentStatus = ViewBag.CurrentStatus as string;
+}
+
+<div class="d-flex justify-content-between align-items-center mb-4">
+    <h4 class="fw-bold mb-0">قائمة الطلبات</h4>
+
+    <!-- Filter by Status -->
+    <div class="d-flex gap-2">
+        <a asp-action="Index" class="btn btn-sm @(string.IsNullOrEmpty(currentStatus) ? "btn-dark" : "btn-outline-dark")">الكل</a>
+        <a asp-action="Index" asp-route-status="قيد الانتظار" class="btn btn-sm @(currentStatus == "قيد الانتظار" ? "btn-warning" : "btn-outline-warning")">قيد الانتظار</a>
+        <a asp-action="Index" asp-route-status="جاري التنفيذ اليدوي" class="btn btn-sm @(currentStatus == "جاري التنفيذ اليدوي" ? "btn-primary" : "btn-outline-primary")">جاري التنفيذ اليدوي</a>
+        <a asp-action="Index" asp-route-status="تم الشحن" class="btn btn-sm @(currentStatus == "تم الشحن" ? "btn-info" : "btn-outline-info")">تم الشحن</a>
+        <a asp-action="Index" asp-route-status="تم التسليم" class="btn btn-sm @(currentStatus == "تم التسليم" ? "btn-success" : "btn-outline-success")">تم التسليم</a>
+    </div>
+</div>
+
+<div class="card admin-card overflow-hidden">
+    <div class="table-responsive">
+        <table class="table table-hover align-middle mb-0">
+            <thead class="table-light">
+                <tr>
+                    <th>رقم الطلب</th>
+                    <th>اسم العميل</th>
+                    <th>رقم الهاتف</th>
+                    <th>المدينة</th>
+                    <th>تاريخ الطلب</th>
+                    <th>طريقة الدفع</th>
+                    <th>المبلغ الكلي</th>
+                    <th>حالة الطلب</th>
+                    <th>تفاصيل</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var order in Model)
+                {
+                    <tr>
+                        <td><strong>#@order.Id</strong></td>
+                        <td>@order.CustomerName</td>
+                        <td><a href="tel:@order.Phone" class="text-decoration-none">@order.Phone</a></td>
+                        <td>@order.City</td>
+                        <td>@order.OrderDate.ToString("yyyy/MM/dd HH:mm")</td>
+                        <td><small class="badge bg-light text-dark border">@order.PaymentMethod</small></td>
+                        <td class="fw-bold text-danger">@order.TotalAmount.ToString("N0") ج.م</td>
+                        <td>
+                            <span class="badge @(order.Status == "تم التسليم" ? "bg-success" : order.Status == "جاري التنفيذ اليدوي" ? "bg-primary" : order.Status == "تم الشحن" ? "bg-info" : order.Status == "ملغي" ? "bg-danger" : "bg-warning text-dark")">
+                                @order.Status
+                            </span>
+                        </td>
+                        <td>
+                            <a asp-action="Details" asp-route-id="@order.Id" class="btn btn-sm btn-primary rounded-pill px-3">
+                                <i class="fa-solid fa-eye me-1"></i> فحص الطلب
+                            </a>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>

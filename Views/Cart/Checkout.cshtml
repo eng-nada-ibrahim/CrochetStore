@@ -1,0 +1,128 @@
+@model CrochetStore.Models.ViewModels.CheckoutViewModel
+@{
+    ViewData["Title"] = "إتمام الطلب وبيانات التوصيل";
+}
+
+<h2 class="fw-bold mb-4"><i class="fa-solid fa-truck-ramp-box text-primary me-2"></i> بيانات الشحن والدفع</h2>
+
+<form asp-action="Checkout" method="post">
+    @Html.AntiForgeryToken()
+    <div class="row g-4">
+        <!-- Customer Info Form -->
+        <div class="col-lg-7">
+            <div class="card border-0 shadow-sm rounded-4 p-4">
+                <h5 class="fw-bold mb-4 border-bottom pb-2">بيانات العميل وعنوان الاستلام</h5>
+                
+                <div asp-validation-summary="ModelOnly" class="text-danger mb-3"></div>
+
+                <div class="mb-3">
+                    <label asp-for="CustomerName" class="form-label fw-bold"></label>
+                    <input asp-for="CustomerName" class="form-control rounded-pill" placeholder="اكتب اسمك الثلاثي أو الثنائي">
+                    <span asp-validation-for="CustomerName" class="text-danger small"></span>
+                </div>
+
+                <div class="row g-3 mb-3">
+                    <div class="col-md-6">
+                        <label asp-for="Phone" class="form-label fw-bold"></label>
+                        <input asp-for="Phone" class="form-control rounded-pill" placeholder="01xxxxxxxxx">
+                        <span asp-validation-for="Phone" class="text-danger small"></span>
+                    </div>
+                    <div class="col-md-6">
+                        <label asp-for="City" class="form-label fw-bold"></label>
+                        <select asp-for="City" class="form-select rounded-pill">
+                             <option value="المنوفية">المنوفية</option>
+                            <option value="القاهرة">القاهرة</option>
+                            <option value="الجيزة">الجيزة</option>
+                            <option value="الإسكندرية">الإسكندرية</option>
+                            <option value="المنصورة">المنصورة</option>
+                            <option value="طنطا">طنطا</option>
+                            <option value="الزقازيق">الزقازيق</option>
+                            <option value="بورسعيد">بورسعيد</option>
+                            <option value="السويس">السويس</option>
+                            <option value="الإسماعيلية">الإسماعيلية</option>
+                            <option value="أسيوط">أسيوط</option>
+                            <option value="سوهاج">سوهاج</option>
+                            <option value="الأقصر">الأقصر</option>
+                            <option value="أسوان">أسوان</option>
+                            <option value="محافظة أخرى">محافظة أخرى</option>
+                        </select>
+                        <span asp-validation-for="City" class="text-danger small"></span>
+                    </div>
+                </div>
+
+                <div class="mb-3">
+                    <label asp-for="ShippingAddress" class="form-label fw-bold"></label>
+                    <input asp-for="ShippingAddress" class="form-control rounded-pill" placeholder="المنطقة، الشارع، رقم العمارة والشقة، علامة مميزة">
+                    <span asp-validation-for="ShippingAddress" class="text-danger small"></span>
+                </div>
+
+                <div class="mb-4">
+                    <label asp-for="GeneralNotes" class="form-label fw-bold"></label>
+                    <textarea asp-for="GeneralNotes" class="form-control rounded-3" rows="2" placeholder="أي تعليمات للمندوب أو وقت التوصيل المفضل..."></textarea>
+                </div>
+
+                <h5 class="fw-bold mb-3 border-bottom pb-2">طريقة الدفع المفضلة</h5>
+                <div class="mb-3">
+                    <div class="form-check p-3 border rounded-3 mb-2 bg-light">
+                        <input class="form-check-input ms-2" type="radio" asp-for="PaymentMethod" value="CashOnDelivery" id="payCash" checked>
+                        <label class="form-check-label fw-bold" for="payCash">
+                            <i class="fa-solid fa-money-bill-wave text-success me-1"></i> الدفع نقدياً عند الاستلام (COD)
+                            <small class="d-block text-muted fw-normal">ادفع للمندوب عند وصول شحنتك وفحصها.</small>
+                        </label>
+                    </div>
+
+                    <div class="form-check p-3 border rounded-3 bg-light">
+                        <input class="form-check-input ms-2" type="radio" asp-for="PaymentMethod" value="VodafoneCash" id="payVodafone">
+                        <label class="form-check-label fw-bold" for="payVodafone">
+                            <i class="fa-solid fa-mobile-screen-button text-danger me-1"></i> فودافون كاش / إنستاباي (Vodafone Cash / InstaPay)
+                            <small class="d-block text-muted fw-normal">سيتم التواصل معك عبر الواتساب لإرسال رقم التحويل وتأكيد الحجز.</small>
+                        </label>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Order Summary Column -->
+        <div class="col-lg-5">
+            <div class="card border-0 shadow-sm rounded-4 p-4 sticky-top" style="top: 90px;">
+                <h5 class="fw-bold mb-3 border-bottom pb-2">مراجعة الفاتورة (@Model.Cart?.Items.Count قطع)</h5>
+
+                <div class="mb-3 overflow-auto" style="max-height: 250px;">
+                    @if (Model.Cart?.Items != null)
+                    {
+                        @foreach (var item in Model.Cart.Items)
+                        {
+                            <div class="d-flex justify-content-between align-items-center mb-2 pb-2 border-bottom">
+                                <div>
+                                    <h6 class="mb-0 fw-bold small">@item.ProductName (x@item.Quantity)</h6>
+                                    @if (!string.IsNullOrEmpty(item.SelectedSize))
+                                    {
+                                        <span class="badge bg-secondary-subtle text-secondary small">@item.SelectedSize</span>
+                                    }
+                                </div>
+                                <span class="fw-bold small text-danger">@item.TotalPrice.ToString("N0") ج.م</span>
+                            </div>
+                        }
+                    }
+                </div>
+
+                <div class="d-flex justify-content-between mb-2">
+                    <span class="text-muted">المجموع الفرعي:</span>
+                    <strong>@Model.Cart?.SubTotal.ToString("N0") ج.م</strong>
+                </div>
+                <div class="d-flex justify-content-between mb-2">
+                    <span class="text-muted">تكلفة الشحن:</span>
+                    <strong>@Model.Cart?.ShippingCost.ToString("N0") ج.م</strong>
+                </div>
+                <div class="d-flex justify-content-between mb-4 border-top pt-2">
+                    <span class="fs-5 fw-bold">الإجمالي للدفع:</span>
+                    <span class="fs-5 fw-bold text-danger">@Model.Cart?.GrandTotal.ToString("N0") ج.م</span>
+                </div>
+
+                <button type="submit" class="btn btn-crochet btn-lg w-100 py-3 shadow">
+                    <i class="fa-solid fa-check-circle me-2"></i> تأكيد وإرسال الطلب
+                </button>
+            </div>
+        </div>
+    </div>
+</form>

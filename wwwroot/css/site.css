@@ -1,0 +1,152 @@
+:root {
+    --crochet-bg: #FAF7F2;
+    --crochet-card-bg: #FFFFFF;
+    --crochet-primary: #C58B7E;
+    --crochet-primary-dark: #A76E61;
+    --crochet-primary-light: #F4EBE8;
+    --crochet-accent: #E5C3A6;
+    --crochet-text: #4A3E3D;
+    --crochet-muted: #8C7B79;
+    --crochet-border: #EFE6DE;
+}
+
+body {
+    background-color: var(--crochet-bg);
+    color: var(--crochet-text);
+    font-family: 'Cairo', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+.main-content {
+    flex: 1;
+}
+
+/* Navbar */
+.crochet-navbar {
+    background-color: #ffffff;
+    box-shadow: 0 4px 20px rgba(74, 62, 61, 0.05);
+    border-bottom: 2px solid var(--crochet-border);
+}
+
+.navbar-brand {
+    font-weight: 800;
+    color: var(--crochet-primary) !important;
+    font-size: 1.4rem;
+}
+
+.nav-link {
+    color: var(--crochet-text) !important;
+    font-weight: 600;
+    transition: color 0.2s ease;
+}
+
+.nav-link:hover, .nav-link.active {
+    color: var(--crochet-primary) !important;
+}
+
+/* Buttons */
+.btn-crochet {
+    background-color: var(--crochet-primary);
+    color: #ffffff;
+    border: none;
+    border-radius: 25px;
+    padding: 0.5rem 1.4rem;
+    font-weight: 600;
+    transition: all 0.3s ease;
+}
+
+.btn-crochet:hover {
+    background-color: var(--crochet-primary-dark);
+    color: #ffffff;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(197, 139, 126, 0.3);
+}
+
+.btn-crochet-outline {
+    background-color: transparent;
+    color: var(--crochet-primary);
+    border: 2px solid var(--crochet-primary);
+    border-radius: 25px;
+    padding: 0.45rem 1.3rem;
+    font-weight: 600;
+    transition: all 0.3s ease;
+}
+
+.btn-crochet-outline:hover {
+    background-color: var(--crochet-primary);
+    color: #ffffff;
+}
+
+/* Badges & Pills */
+.badge-crochet {
+    background-color: var(--crochet-primary-light);
+    color: var(--crochet-primary-dark);
+    font-weight: 600;
+    border-radius: 20px;
+    padding: 0.4em 0.8em;
+}
+
+/* Cards */
+.crochet-card {
+    background: #ffffff;
+    border: 1px solid var(--crochet-border);
+    border-radius: 16px;
+    overflow: hidden;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.crochet-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 25px rgba(197, 139, 126, 0.15);
+}
+
+.crochet-card img {
+    height: 220px;
+    object-fit: cover;
+    width: 100%;
+}
+
+/* Hero Section */
+.hero-banner {
+    background: linear-gradient(135deg, #FDF9F6 0%, #F5ECE5 100%);
+    border-radius: 24px;
+    padding: 4rem 2rem;
+    margin-bottom: 3rem;
+    border: 1px solid var(--crochet-border);
+    position: relative;
+    overflow: hidden;
+}
+
+/* Handmade Tag */
+.handmade-tag {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    background: #FFF1EE;
+    color: #D65A4B;
+    padding: 6px 14px;
+    border-radius: 30px;
+    font-size: 0.9rem;
+    font-weight: 700;
+}
+
+/* Footer */
+footer.crochet-footer {
+    background: #3A2F2E;
+    color: #ECE5E3;
+    padding-top: 3rem;
+    padding-bottom: 2rem;
+    margin-top: 4rem;
+}
+
+footer.crochet-footer a {
+    color: #D8B9B1;
+    text-decoration: none;
+    transition: color 0.2s;
+}
+
+footer.crochet-footer a:hover {
+    color: #ffffff;
+}

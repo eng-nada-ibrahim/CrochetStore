@@ -1,0 +1,100 @@
+@model CrochetStore.Models.Order
+@{
+    ViewData["Title"] = "تم استلام طلبك بنجاح";
+}
+
+<div class="row justify-content-center">
+    <div class="col-lg-8">
+        <div class="card border-0 shadow rounded-4 p-4 p-md-5 text-center bg-white mb-4">
+            <div class="mb-3">
+                <i class="fa-solid fa-circle-check text-success display-1"></i>
+            </div>
+            <h2 class="fw-bold mb-2">شكراً لطلبك الجميل، @Model.CustomerName!</h2>
+            <p class="lead text-muted mb-4">
+                تم تسجيل طلبك بنجاح برقم <span class="badge bg-dark fs-6 px-3 py-2 rounded-pill">#@Model.Id</span>، وسيبدأ فريقنا الحرفي في تجهيز قطعتك يدوياً بكل إتقان.
+            </p>
+
+            <div class="alert alert-warning-subtle border border-warning rounded-4 text-start p-3 mb-4">
+                <div class="d-flex align-items-center gap-2 mb-1">
+                    <i class="fa-solid fa-wand-sparkles text-warning fs-4"></i>
+                    <strong class="fs-6">تفاصيل التنفيذ والشحن:</strong>
+                </div>
+                <p class="mb-0 small text-muted">
+                    نظراً لأن مشغولاتنا صناعة يدوية 100%، فإن الطلب يمر بمرحلة الحياكة اليدوية الدقيقة وفحص الجودة قبل تسليمه لشركة الشحن. سنوافيك بتحديثات الحالة عبر الواتساب على رقم <strong>@Model.Phone</strong>.
+                </p>
+            </div>
+
+            <div class="card border-0 shadow-sm rounded-4 p-4 mb-4 text-start bg-light border-start border-4 border-success">
+                <div class="d-flex align-items-center mb-2">
+                    <i class="fa-solid fa-mobile-screen-button text-success fs-3 me-2"></i>
+                    <h5 class="fw-bold m-0 text-dark">تعليمات الدفع عبر InstaPay / فودافون كاش</h5>
+                </div>
+                <p class="text-muted small mb-3">
+                    في حال اختيار التحويل الإلكتروني، برجاء تحويل المبلغ الإجمالي <strong class="text-danger">(@Model.TotalAmount.ToString("N0") ج.م)</strong>:
+                </p>
+
+                <div class="bg-white p-3 rounded-3 border mb-3">
+                    <div class="d-flex justify-content-between align-items-center mb-2">
+                        <span class="text-secondary small"><i class="fa-solid fa-phone me-1"></i> رقم التحويل (فودافون كاش / إنستاباي):</span>
+                        <strong class="text-primary fs-6">01156312484</strong>
+                    </div>
+                    <div class="d-flex justify-content-between align-items-center">
+                        <span class="text-secondary small"><i class="fa-solid fa-at me-1"></i> عنوان الدفع اللحظي (InstaPay IPA):</span>
+                        <strong class="text-success fs-6">yourname@instapay</strong>
+                    </div>
+                </div>
+
+                <div class="alert alert-warning p-2 small mb-0 text-center fw-bold rounded-3">
+                    📌 بعد التحويل، يرجى إرسال لقطة شاشة (Screenshot) للإيصال عبر الواتساب على الرقم <strong>01156312484</strong> لتأكيد الطلب.
+                </div>
+            </div>
+            <div class="card bg-light border-0 rounded-4 p-3 mb-4 text-start">
+                <h5 class="fw-bold mb-3 border-bottom pb-2">تفاصيل الفاتورة</h5>
+                <div class="row g-2 mb-3">
+                    <div class="col-sm-6"><span class="text-muted">طريقة الدفع:</span> <strong>@Model.PaymentMethod</strong></div>
+                    <div class="col-sm-6"><span class="text-muted">تاريخ الطلب:</span> <strong>@Model.OrderDate.ToString("yyyy/MM/dd - hh:mm tt")</strong></div>
+                    <div class="col-sm-12"><span class="text-muted">عنوان التوصيل:</span> <strong>@Model.ShippingAddress - @Model.City</strong></div>
+                </div>
+
+                <div class="table-responsive">
+                    <table class="table table-sm table-borderless">
+                        <thead class="border-bottom">
+                            <tr>
+                                <th>القطعة</th>
+                                <th>المقاس/التفاصيل</th>
+                                <th>الكمية</th>
+                                <th>السعر</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var item in Model.OrderItems)
+                            {
+                                <tr>
+                                    <td>@item.Product?.Name</td>
+                                    <td>@(item.SelectedSize ?? "-")</td>
+                                    <td>@item.Quantity</td>
+                                    <td>@((item.UnitPrice * item.Quantity).ToString("N0")) ج.م</td>
+                                </tr>
+                            }
+                        </tbody>
+                        <tfoot class="border-top fw-bold">
+                            <tr>
+                                <td colspan="3">الإجمالي الشامل للشحن:</td>
+                                <td class="text-danger fs-5">@Model.TotalAmount.ToString("N0") ج.م</td>
+                            </tr>
+                        </tfoot>
+                    </table>
+                </div>
+            </div>
+
+            <div class="d-flex justify-content-center gap-3">
+                <a asp-controller="Products" asp-action="Index" class="btn btn-crochet px-4 py-2">
+                    <i class="fa-solid fa-bag-shopping me-2"></i> مواصلة التسوق
+                </a>
+                <a asp-controller="Home" asp-action="Index" class="btn btn-crochet-outline px-4 py-2">
+                    <i class="fa-solid fa-house me-2"></i> الصفحة الرئيسية
+                </a>
+            </div>
+        </div>
+    </div>
+</div>

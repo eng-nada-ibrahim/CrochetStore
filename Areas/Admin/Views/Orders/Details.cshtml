@@ -1,0 +1,121 @@
+@model CrochetStore.Models.Order
+@{
+    ViewData["Title"] = $"تفاصيل الطلب #{Model.Id}";
+}
+
+<div class="d-flex justify-content-between align-items-center mb-4">
+    <h4 class="fw-bold mb-0">تفاصيل الطلب رقم #@Model.Id</h4>
+    <a asp-action="Index" class="btn btn-outline-secondary rounded-pill px-3">
+        <i class="fa-solid fa-arrow-right me-1"></i> العودة لقائمة الطلبات
+    </a>
+</div>
+
+<div class="row g-4">
+    <!-- Order Details & Update Status -->
+    <div class="col-lg-8">
+        <div class="card admin-card p-4 mb-4">
+            <h5 class="fw-bold mb-3 border-bottom pb-2">عناصر ومشغولات الطلب</h5>
+
+            <div class="table-responsive mb-4">
+                <table class="table align-middle">
+                    <thead class="table-light">
+                        <tr>
+                            <th>المنتج</th>
+                            <th>المقاس المطلوب</th>
+                            <th>ملاحظات وتفاصيل التخصيص</th>
+                            <th>سعر القطعة</th>
+                            <th>الكمية</th>
+                            <th>الإجمالي</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in Model.OrderItems)
+                        {
+                            <tr>
+                                <td>
+                                    <div class="d-flex align-items-center gap-2">
+                                        <img src="@item.Product?.ImageUrl" alt="@item.Product?.Name" class="rounded-3 border" style="width: 50px; height: 50px; object-fit: cover;">
+                                        <div>
+                                            <strong>@item.Product?.Name</strong>
+                                            <small class="text-muted d-block">خيط: @item.Product?.YarnType</small>
+                                        </div>
+                                    </div>
+                                </td>
+                                <td><span class="badge bg-secondary">@(item.SelectedSize ?? "افتراضي")</span></td>
+                                <td>
+                                    @if (!string.IsNullOrEmpty(item.CustomNotes))
+                                    {
+                                        <span class="text-primary fw-bold small"><i class="fa-solid fa-pen-fancy me-1"></i> @item.CustomNotes</span>
+                                    }
+                                    else
+                                    {
+                                        <span class="text-muted small">-</span>
+                                    }
+                                </td>
+                                <td>@item.UnitPrice.ToString("N0") ج.م</td>
+                                <td>@item.Quantity</td>
+                                <td class="fw-bold text-danger">@((item.UnitPrice * item.Quantity).ToString("N0")) ج.م</td>
+                            </tr>
+                        }
+                    </tbody>
+                    <tfoot class="border-top">
+                        <tr class="fs-5 fw-bold">
+                            <td colspan="5" class="text-start">المبلغ الإجمالي النهائي:</td>
+                            <td class="text-danger">@Model.TotalAmount.ToString("N0") ج.م</td>
+                        </tr>
+                    </tfoot>
+                </table>
+            </div>
+
+            @if (!string.IsNullOrEmpty(Model.GeneralNotes))
+            {
+                <div class="alert alert-info rounded-3">
+                    <strong>ملاحظات العميل الإضافية:</strong> @Model.GeneralNotes
+                </div>
+            }
+        </div>
+    </div>
+
+    <!-- Customer & Status Side -->
+    <div class="col-lg-4">
+        <!-- Status Box -->
+        <div class="card admin-card p-4 mb-4">
+            <h5 class="fw-bold mb-3 border-bottom pb-2">تحديث حالة الطلب</h5>
+
+            <p class="mb-2">الحالة الحالية: <span class="badge bg-primary fs-6">@Model.Status</span></p>
+
+            <form asp-action="UpdateStatus" method="post">
+                @Html.AntiForgeryToken()
+                <input type="hidden" name="orderId" value="@Model.Id" />
+
+                <div class="mb-3">
+                    <label class="form-label small fw-bold">تغيير إلى:</label>
+                    <select name="newStatus" class="form-select">
+                        <option value="قيد الانتظار" selected="@(Model.Status == "قيد الانتظار" ? "selected" : null)">قيد الانتظار</option>
+                        <option value="جاري التنفيذ اليدوي" selected="@(Model.Status == "جاري التنفيذ اليدوي" ? "selected" : null)">جاري التنفيذ اليدوي (Handmade In-Progress)</option>
+                        <option value="تم الشحن" selected="@(Model.Status == "تم الشحن" ? "selected" : null)">تم الشحن مع مندوب التوصيل</option>
+                        <option value="تم التسليم" selected="@(Model.Status == "تم التسليم" ? "selected" : null)">تم التسليم بنجاح</option>
+                        <option value="ملغي" selected="@(Model.Status == "ملغي" ? "selected" : null)">ملغي</option>
+                    </select>
+                </div>
+
+                <button type="submit" class="btn btn-success w-100">
+                    <i class="fa-solid fa-floppy-disk me-1"></i> حفظ الحالة الجديدة
+                </button>
+            </form>
+        </div>
+
+        <!-- Customer Card -->
+        <div class="card admin-card p-4">
+            <h5 class="fw-bold mb-3 border-bottom pb-2">بيانات العميل والتوصيل</h5>
+            <ul class="list-unstyled mb-0">
+                <li class="mb-2"><strong class="text-muted">الاسم:</strong> @Model.CustomerName</li>
+                <li class="mb-2"><strong class="text-muted">الهاتف:</strong> <a href="tel:@Model.Phone">@Model.Phone</a></li>
+                <li class="mb-2"><strong class="text-muted">المحافظة / المدينة:</strong> @Model.City</li>
+                <li class="mb-2"><strong class="text-muted">العنوان:</strong> @Model.ShippingAddress</li>
+                <li class="mb-2"><strong class="text-muted">طريقة الدفع:</strong> @Model.PaymentMethod</li>
+                <li><strong class="text-muted">تاريخ الطلب:</strong> @Model.OrderDate.ToString("yyyy/MM/dd hh:mm tt")</li>
+            </ul>
+        </div>
+    </div>
+</div>

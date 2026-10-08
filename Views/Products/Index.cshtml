@@ -1,0 +1,101 @@
+@model CrochetStore.Models.ViewModels.ProductFilterViewModel
+@{
+    ViewData["Title"] = "معرض المنتجات والمشغولات اليدوية";
+}
+
+<div class="row g-4">
+    <!-- Filter Sidebar -->
+    <div class="col-lg-3">
+        <div class="card border-0 shadow-sm rounded-4 p-3 sticky-top" style="top: 90px;">
+            <h5 class="fw-bold mb-3"><i class="fa-solid fa-filter me-2 text-primary"></i> تصفية المنتجات</h5>
+            <form method="get" asp-controller="Products" asp-action="Index">
+                <!-- Search Box -->
+                <div class="mb-3">
+                    <label class="form-label small fw-bold">بحث بالاسم أو نوع الخيط</label>
+                    <input type="text" name="searchTerm" value="@Model.SearchTerm" class="form-control rounded-pill" placeholder="اكتب للبحث...">
+                </div>
+
+                <!-- Categories -->
+                <div class="mb-3">
+                    <label class="form-label small fw-bold">التصنيف</label>
+                    <select name="categoryId" class="form-select rounded-pill">
+                        <option value="">جميع التصنيفات</option>
+                        @foreach (var cat in Model.Categories)
+                        {
+                            <option value="@cat.Id" selected="@(Model.CategoryId == cat.Id ? "selected" : null)">@cat.Name</option>
+                        }
+                    </select>
+                </div>
+
+                <!-- Sorting -->
+                <div class="mb-3">
+                    <label class="form-label small fw-bold">الترتيب حسب</label>
+                    <select name="sortBy" class="form-select rounded-pill">
+                        <option value="">الأحدث أولاً</option>
+                        <option value="price_asc" selected="@(Model.SortBy == "price_asc" ? "selected" : null)">السعر: من الأقل للأعلى</option>
+                        <option value="price_desc" selected="@(Model.SortBy == "price_desc" ? "selected" : null)">السعر: من الأعلى للأقل</option>
+                        <option value="processing_asc" selected="@(Model.SortBy == "processing_asc" ? "selected" : null)">الأسرع في مدة التجهيز</option>
+                        <option value="name" selected="@(Model.SortBy == "name" ? "selected" : null)">الاسم أبجدياً</option>
+                    </select>
+                </div>
+
+                <div class="d-grid gap-2">
+                    <button type="submit" class="btn btn-crochet">
+                        <i class="fa-solid fa-magnifying-glass me-1"></i> تطبيق الفلتر
+                    </button>
+                    <a asp-action="Index" class="btn btn-light rounded-pill btn-sm">إلغاء الفلترة</a>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Product Grid -->
+    <div class="col-lg-9">
+        <div class="d-flex justify-content-between align-items-center mb-3">
+            <h4 class="fw-bold mb-0">المشغولات المتاحة <span class="badge bg-secondary rounded-pill fs-6">@Model.Products.Count</span></h4>
+        </div>
+
+        @if (!Model.Products.Any())
+        {
+            <div class="text-center py-5 bg-white rounded-4 border">
+                <i class="fa-solid fa-magnifying-glass fs-1 text-muted mb-3"></i>
+                <h5 class="fw-bold">لم يتم العثور على منتجات مطابقة</h5>
+                <p class="text-muted">جرب تغيير كلمات البحث أو إلغاء فلاتر التصنيف.</p>
+                <a asp-action="Index" class="btn btn-crochet-outline">عرض كل المشغولات</a>
+            </div>
+        }
+        else
+        {
+            <div class="row g-4">
+                @foreach (var product in Model.Products)
+                {
+                    <div class="col-md-6 col-xl-4">
+                        <div class="crochet-card h-100 d-flex flex-column">
+                            <div class="position-relative">
+                                <img src="@product.ImageUrl" alt="@product.Name">
+                                <span class="position-absolute top-0 start-0 m-2 badge bg-dark opacity-75 rounded-pill px-2 py-1 small">
+                                    <i class="fa-regular fa-clock me-1"></i> @product.ProcessingDays أيام
+                                </span>
+                            </div>
+                            <div class="p-3 d-flex flex-column flex-grow-1">
+                                <span class="badge badge-crochet align-self-start mb-2">@product.Category?.Name</span>
+                                <h6 class="fw-bold mb-1">
+                                    <a asp-controller="Products" asp-action="Details" asp-route-id="@product.Id" class="text-dark text-decoration-none">
+                                        @product.Name
+                                    </a>
+                                </h6>
+                                <p class="small text-muted mb-1 text-truncate"><i class="fa-solid fa-feather me-1"></i> @product.YarnType</p>
+                                <div class="mt-auto pt-2 border-top d-flex justify-content-between align-items-center">
+                                    <span class="fw-bold text-danger fs-5">@product.Price.ToString("N0") ج.م</span>
+                                    <a asp-controller="Products" asp-action="Details" asp-route-id="@product.Id" class="btn btn-sm btn-crochet">
+                                        <i class="fa-solid fa-eye me-1"></i> التفاصيل
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                }
+            </div>
+        }
+    </div>
+</div>

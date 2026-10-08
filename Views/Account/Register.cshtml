@@ -1,0 +1,58 @@
+@model CrochetStore.Models.ViewModels.RegisterViewModel
+@{
+    ViewData["Title"] = "حساب جديد";
+}
+
+<div class="row justify-content-center">
+    <div class="col-md-6 col-lg-5">
+        <div class="card border-0 shadow-sm rounded-4 p-4 p-md-5 bg-white">
+            <div class="text-center mb-4">
+                <div class="fs-1 text-primary mb-2"><i class="fa-solid fa-user-plus"></i></div>
+                <h3 class="fw-bold">إنشاء حساب جديد</h3>
+                <p class="text-muted small">انضم لعائلة متجر الكروشيه اليدوي واستمتع بتجربة تسوق فريدة</p>
+            </div>
+
+            <form asp-action="Register" method="post">
+                <div asp-validation-summary="ModelOnly" class="text-danger mb-3 small"></div>
+
+                <div class="mb-3">
+                    <label asp-for="FullName" class="form-label fw-bold"></label>
+                    <input asp-for="FullName" class="form-control rounded-pill" placeholder="الاسم الكامل">
+                    <span asp-validation-for="FullName" class="text-danger small"></span>
+                </div>
+
+                <div class="mb-3">
+                    <label asp-for="Email" class="form-label fw-bold"></label>
+                    <input asp-for="Email" class="form-control rounded-pill" placeholder="name@example.com">
+                    <span asp-validation-for="Email" class="text-danger small"></span>
+                </div>
+
+                <div class="mb-3">
+                    <label asp-for="Phone" class="form-label fw-bold"></label>
+                    <input asp-for="Phone" class="form-control rounded-pill" placeholder="01xxxxxxxxx">
+                    <span asp-validation-for="Phone" class="text-danger small"></span>
+                </div>
+
+                <div class="mb-3">
+                    <label asp-for="Password" class="form-label fw-bold"></label>
+                    <input asp-for="Password" class="form-control rounded-pill" placeholder="••••••••">
+                    <span asp-validation-for="Password" class="text-danger small"></span>
+                </div>
+
+                <div class="mb-4">
+                    <label asp-for="ConfirmPassword" class="form-label fw-bold"></label>
+                    <input asp-for="ConfirmPassword" class="form-control rounded-pill" placeholder="••••••••">
+                    <span asp-validation-for="ConfirmPassword" class="text-danger small"></span>
+                </div>
+
+                <button type="submit" class="btn btn-crochet w-100 py-2 rounded-pill shadow-sm mb-3">
+                    تسجيل الحساب
+                </button>
+
+                <div class="text-center small">
+                    لديك حساب بالفعل؟ <a asp-action="Login" class="fw-bold text-primary text-decoration-none">تسجيل الدخول</a>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,40 @@
+@{
+    ViewData["Title"] = "عن المتجر والتفصيل الخاص";
+}
+
+<div class="row justify-content-center">
+    <div class="col-lg-10">
+        <div class="card border-0 shadow-sm rounded-4 p-4 p-md-5 bg-white mb-4">
+            <div class="text-center mb-5">
+                <span class="handmade-tag mb-2"><i class="fa-solid fa-heart"></i> قصتنا مع فن الكروشيه</span>
+                <h2 class="fw-bold">فن الكروشيه.. شغف يصنع الذكريات</h2>
+                <p class="text-muted">نحن نصنع كل قطعة يدوياً بكل حب وصبر لتكون فريدة وخاصة بك تماماً</p>
+            </div>
+
+            <div class="row g-4 align-items-center mb-5">
+                <div class="col-md-6">
+                    <h4 class="fw-bold mb-3 text-primary"><i class="fa-solid fa-wand-magic-sparkles me-2"></i> التفصيل حسب الطلب (Custom Orders)</h4>
+                    <p class="text-muted lead fs-6">
+                        هل لديك تصميم معين في مخيلتك؟ هل ترغب في لون محدد أو مقاس خاص بدقة السنتيمتر؟ نحن هنا لتحويل فكرتك إلى قطعة حقيقية!
+                    </p>
+                    <ul class="list-unstyled">
+                        <li class="mb-2"><i class="fa-solid fa-circle-check text-success me-2"></i> اختيار نوع الخيط (قطن مصري، صوف تركي، مكرمية، قطيفة).</li>
+                        <li class="mb-2"><i class="fa-solid fa-circle-check text-success me-2"></i> تحديد ألوان البالتة المتناسقة مع ذوقك.</li>
+                       
+                    </ul>
+                </div>
+                <div class="col-md-6 text-center">
+               <img src="~/images/tafsel.jpg" alt="Crochet Craft" class="img-fluid rounded-4 shadow">
+                </div>
+            </div>
+
+            <div class="bg-light p-4 rounded-4 border text-center">
+                <h5 class="fw-bold mb-2">كيف تطلب قطعة مخصصة؟</h5>
+                <p class="text-muted mb-3">يمكنك ببساطة إضافة ملاحظاتك داخل صفحة تفاصيل أي منتج أثناء الطلب، أو التواصل المباشر مع فريقنا الفني.</p>
+                <a asp-controller="Products" asp-action="Index" class="btn btn-crochet px-4 py-2">
+                    <i class="fa-solid fa-bag-shopping me-2"></i> ابدأ تصفح المشغولات
+                </a>
+            </div>
+        </div>
+    </div>
+</div>

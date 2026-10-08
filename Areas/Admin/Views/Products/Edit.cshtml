@@ -1,0 +1,100 @@
+@model CrochetStore.Models.Product
+@{
+    ViewData["Title"] = "تعديل منتج كروشيه";
+}
+
+<div class="row justify-content-center">
+    <div class="col-lg-9">
+        <div class="card admin-card p-4">
+            <h4 class="fw-bold mb-4 border-bottom pb-2">تعديل: @Model.Name</h4>
+
+            <form asp-action="Edit" method="post" enctype="multipart/form-data">
+                @Html.AntiForgeryToken()
+                <input type="hidden" asp-for="Id" />
+                <input type="hidden" asp-for="CreatedAt" />
+                <div asp-validation-summary="ModelOnly" class="text-danger mb-3"></div>
+
+                <div class="row g-3 mb-3">
+                    <div class="col-md-8">
+                        <label asp-for="Name" class="form-label fw-bold"></label>
+                        <input asp-for="Name" class="form-control">
+                        <span asp-validation-for="Name" class="text-danger small"></span>
+                    </div>
+                    <div class="col-md-4">
+                        <label asp-for="CategoryId" class="form-label fw-bold"></label>
+                        <select asp-for="CategoryId" class="form-select" asp-items="ViewBag.CategoryId"></select>
+                        <span asp-validation-for="CategoryId" class="text-danger small"></span>
+                    </div>
+                </div>
+
+                <div class="mb-3">
+                    <label asp-for="Description" class="form-label fw-bold"></label>
+                    <textarea asp-for="Description" class="form-control" rows="3"></textarea>
+                    <span asp-validation-for="Description" class="text-danger small"></span>
+                </div>
+
+                <div class="row g-3 mb-3">
+                    <div class="col-md-6">
+                        <label asp-for="Price" class="form-label fw-bold"></label>
+                        <input asp-for="Price" class="form-control" type="number" step="0.01">
+                        <span asp-validation-for="Price" class="text-danger small"></span>
+                    </div>
+                    <div class="col-md-6">
+                        <label asp-for="StockQuantity" class="form-label fw-bold"></label>
+                        <input asp-for="StockQuantity" class="form-control" type="number">
+                        <span asp-validation-for="StockQuantity" class="text-danger small"></span>
+                    </div>
+                </div>
+
+                <!-- Crochet Specific fields -->
+                <div class="row g-3 mb-3">
+                    <div class="col-md-4">
+                        <label asp-for="YarnType" class="form-label fw-bold"></label>
+                        <input asp-for="YarnType" class="form-control">
+                        <span asp-validation-for="YarnType" class="text-danger small"></span>
+                    </div>
+                    <div class="col-md-4">
+                        <label asp-for="SizeOptions" class="form-label fw-bold"></label>
+                        <input asp-for="SizeOptions" class="form-control">
+                        <span asp-validation-for="SizeOptions" class="text-danger small"></span>
+                    </div>
+                    <div class="col-md-4">
+                        <label asp-for="ProcessingDays" class="form-label fw-bold"></label>
+                        <input asp-for="ProcessingDays" class="form-control" type="number">
+                        <span asp-validation-for="ProcessingDays" class="text-danger small"></span>
+                    </div>
+                </div>
+
+                <div class="row g-3 mb-4 align-items-center">
+                    <div class="col-md-3 text-center">
+                        <img src="@Model.ImageUrl" alt="@Model.Name" class="img-thumbnail rounded-3" style="max-height: 100px;">
+                    </div>
+                    <div class="col-md-9">
+                        <label class="form-label fw-bold">تغيير الصورة من الجهاز</label>
+                        <input type="file" name="imageFile" class="form-control" accept="image/*">
+                    </div>
+                </div>
+
+                <div class="row g-3 mb-4">
+                    <div class="col-md-6">
+                        <div class="form-check form-switch">
+                            <input class="form-check-input" type="checkbox" asp-for="IsCustomizable">
+                            <label class="form-check-label fw-bold" asp-for="IsCustomizable">متاح التفصيل واختيار المقاس/اللون</label>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-check form-switch">
+                            <input class="form-check-input" type="checkbox" asp-for="IsFeatured">
+                            <label class="form-check-label fw-bold" asp-for="IsFeatured">عرض كمنتج مميز بالصفحة الرئيسية</label>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="d-flex gap-2">
+                    <button type="submit" class="btn btn-primary px-4">حفظ التعديلات</button>
+                    <a asp-action="Index" class="btn btn-secondary">إلغاء</a>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,67 @@
+@model IEnumerable<CrochetStore.Models.Product>
+@{
+    ViewData["Title"] = "إدارة منتجات الكروشيه";
+}
+
+<div class="d-flex justify-content-between align-items-center mb-4">
+    <h4 class="fw-bold mb-0">قائمة المنتجات والمشغولات</h4>
+    <a asp-action="Create" class="btn btn-primary rounded-pill px-3">
+        <i class="fa-solid fa-plus me-1"></i> إضافة منتج جديد
+    </a>
+</div>
+
+<div class="card admin-card overflow-hidden">
+    <div class="table-responsive">
+        <table class="table table-hover align-middle mb-0">
+            <thead class="table-light">
+                <tr>
+                    <th>الصورة</th>
+                    <th>الاسم</th>
+                    <th>التصنيف</th>
+                    <th>السعر</th>
+                    <th>المخزون</th>
+                    <th>نوع الخيط</th>
+                    <th>مدة التجهيز</th>
+                    <th>مميز؟</th>
+                    <th>الإجراءات</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>
+                            <img src="@item.ImageUrl" alt="@item.Name" class="rounded-3 border" style="width: 50px; height: 50px; object-fit: cover;">
+                        </td>
+                        <td>
+                            <strong>@item.Name</strong>
+                        </td>
+                        <td><span class="badge bg-secondary-subtle text-secondary">@item.Category?.Name</span></td>
+                        <td class="fw-bold text-danger">@item.Price.ToString("N0") ج.م</td>
+                        <td>
+                            @if (item.StockQuantity <= 3)
+                            {
+                                <span class="badge bg-danger">@item.StockQuantity قطعة</span>
+                            }
+                            else
+                            {
+                                <span class="badge bg-success">@item.StockQuantity قطعة</span>
+                            }
+                        </td>
+                        <td><small>@item.YarnType</small></td>
+                        <td>@item.ProcessingDays أيام</td>
+                        <td>
+                            @(item.IsFeatured ? "⭐ نعم" : "لا")
+                        </td>
+                        <td>
+                            <div class="btn-group btn-group-sm">
+                                <a asp-action="Edit" asp-route-id="@item.Id" class="btn btn-outline-primary" title="تعديل"><i class="fa-solid fa-pen-to-square"></i></a>
+                                <a asp-action="Delete" asp-route-id="@item.Id" class="btn btn-outline-danger" title="حذف"><i class="fa-solid fa-trash"></i></a>
+                            </div>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>

@@ -1,0 +1,135 @@
+@{
+    ViewData["Title"] = "الرئيسية - سحر الكروشيه والعمل اليدوي";
+    var categories = ViewBag.Categories as List<CrochetStore.Models.Category> ?? new List<CrochetStore.Models.Category>();
+    var featuredProducts = ViewBag.FeaturedProducts as List<CrochetStore.Models.Product> ?? new List<CrochetStore.Models.Product>();
+}
+
+<!-- Hero Banner -->
+<div class="hero-banner shadow-sm">
+    <div class="row align-items-center g-4">
+        <div class="col-lg-7">
+            <span class="handmade-tag mb-3">
+                <i class="fa-solid fa-heart"></i> صُنع بكل حُب وإتقان | 100% Handmade
+            </span>
+            <h1 class="display-4 fw-bold mb-3" style="color: #4A3E3D; line-height: 1.3;">
+                قطع كروشيه فنية تدفئ روحك وتبرز تميزك
+            </h1>
+            <p class="lead text-muted mb-4">
+                اكتشفي تشكيلة فريدة من الشيلان، الملابس، أطقم الأطفال والإكسسوارات المصنوعة يدوياً بأرقى خيوط الصوف والقطن الطبيعي مع إمكانية التفصيل بمقاساتك الخاصة.
+            </p>
+            <div class="d-flex flex-wrap gap-3">
+                <a asp-controller="Products" asp-action="Index" class="btn btn-crochet btn-lg px-4 shadow">
+                    <i class="fa-solid fa-bag-shopping me-2"></i> تسوق التشكيلة الآن
+                </a>
+                <a asp-controller="Home" asp-action="About" class="btn btn-crochet-outline btn-lg px-4">
+                    <i class="fa-solid fa-sparkles me-2"></i> طلب تصميم مخصص
+                </a>
+            </div>
+        </div>
+        <div class="col-lg-5 text-center">
+            <img src="~/images/hero.jpg" alt="Crochet Hero" class="img-fluid rounded-4 shadow-lg" style="max-height: 380px; object-fit: cover;">
+        </div>
+    </div>
+</div>
+
+<!-- Features Value Section -->
+<div class="row g-4 mb-5 text-center">
+    <div class="col-md-3">
+        <div class="p-4 bg-white rounded-4 border h-100 shadow-sm">
+            <div class="fs-1 text-danger mb-2"><i class="fa-solid fa-hand-holding-heart"></i></div>
+            <h5 class="fw-bold">صناعة يدوية نقية</h5>
+            <p class="text-muted small mb-0">كل غرزة نسجت بعناية ودقة فائقة لتمنحك قطعة فنية تدوم طويلاً.</p>
+        </div>
+    </div>
+    <div class="col-md-3">
+        <div class="p-4 bg-white rounded-4 border h-100 shadow-sm">
+            <div class="fs-1 text-primary mb-2"><i class="fa-solid fa-shirt"></i></div>
+            <h5 class="fw-bold">تفصيل حسب القياس</h5>
+            <p class="text-muted small mb-0">يمكنك طلب أي مقاس أو اختيار ألوانك المفضلة لتناسب رغبتك التامة.</p>
+        </div>
+    </div>
+    <div class="col-md-3">
+        <div class="p-4 bg-white rounded-4 border h-100 shadow-sm">
+            <div class="fs-1 text-success mb-2"><i class="fa-solid fa-feather-pointed"></i></div>
+            <h5 class="fw-bold">أجود أنواع الخيوط</h5>
+            <p class="text-muted small mb-0">نستخدم خيوط قطن وصوف طبيعية آمنة للبشرة ولا تسبب أي حساسية.</p>
+        </div>
+    </div>
+    <div class="col-md-3">
+        <div class="p-4 bg-white rounded-4 border h-100 shadow-sm">
+            <div class="fs-1 text-warning mb-2"><i class="fa-solid fa-truck-fast"></i></div>
+            <h5 class="fw-bold">شحن لجميع المحافظات</h5>
+            <p class="text-muted small mb-0">تغليف أنيق وجاهز للإهداء مع خدمة الدفع عند الاستلام أو فودافون كاش.</p>
+        </div>
+    </div>
+</div>
+
+<!-- Categories Section -->
+<div class="mb-5">
+    <div class="d-flex justify-content-between align-items-end mb-4">
+        <div>
+            <h2 class="fw-bold mb-1">تسوق حسب التصنيف</h2>
+            <p class="text-muted mb-0">تصفح أقسام المشغولات اليدوية المميزة</p>
+        </div>
+        <a asp-controller="Products" asp-action="Index" class="btn btn-sm btn-crochet-outline">عرض الكل <i class="fa-solid fa-angle-left"></i></a>
+    </div>
+
+    <div class="row g-4">
+        @foreach (var category in categories)
+        {
+            <div class="col-6 col-md-3">
+                <a asp-controller="Products" asp-action="Index" asp-route-categoryId="@category.Id" class="text-decoration-none">
+                    <div class="crochet-card text-center h-100">
+                        <img src="@category.ImageUrl" alt="@category.Name">
+                        <div class="p-3">
+                            <h6 class="fw-bold text-dark mb-1">@category.Name</h6>
+                            <span class="small text-muted">تصفح القطع</span>
+                        </div>
+                    </div>
+                </a>
+            </div>
+        }
+    </div>
+</div>
+
+<!-- Featured Products Section -->
+<div class="mb-5">
+    <div class="d-flex justify-content-between align-items-end mb-4">
+        <div>
+            <h2 class="fw-bold mb-1">أحدث إبداعات الكروشيه</h2>
+            <p class="text-muted mb-0">قطع مميزة حيكت حديثاً وجاهزة للطلب الفوري</p>
+        </div>
+        <a asp-controller="Products" asp-action="Index" class="btn btn-sm btn-crochet-outline">كل المنتجات <i class="fa-solid fa-angle-left"></i></a>
+    </div>
+
+    <div class="row g-4">
+        @foreach (var product in featuredProducts)
+        {
+            <div class="col-md-6 col-lg-3">
+                <div class="crochet-card h-100 d-flex flex-direction-column">
+                    <div class="position-relative">
+                        <img src="@product.ImageUrl" alt="@product.Name">
+                        <span class="position-absolute top-0 start-0 m-2 badge bg-dark opacity-75 rounded-pill px-2 py-1 small">
+                            <i class="fa-regular fa-clock me-1"></i> تجهيز: @product.ProcessingDays أيام
+                        </span>
+                    </div>
+                    <div class="p-3 d-flex flex-column flex-grow-1">
+                        <span class="badge badge-crochet align-self-start mb-2">@product.Category?.Name</span>
+                        <h6 class="fw-bold mb-1 text-dark">
+                            <a asp-controller="Products" asp-action="Details" asp-route-id="@product.Id" class="text-dark text-decoration-none">
+                                @product.Name
+                            </a>
+                        </h6>
+                        <p class="small text-muted mb-2 text-truncate">نوع الخيط: @product.YarnType</p>
+                        <div class="mt-auto pt-2 border-top d-flex justify-content-between align-items-center">
+                            <span class="fw-bold text-danger fs-5">@product.Price.ToString("N0") ج.م</span>
+                            <a asp-controller="Products" asp-action="Details" asp-route-id="@product.Id" class="btn btn-sm btn-crochet">
+                                <i class="fa-solid fa-eye me-1"></i> التفاصيل
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+</div>

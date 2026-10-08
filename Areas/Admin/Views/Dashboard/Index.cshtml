@@ -1,0 +1,136 @@
+@model CrochetStore.Models.ViewModels.AdminDashboardViewModel
+@{
+    ViewData["Title"] = "لوحة الإحصائيات العامة";
+}
+
+<!-- Statistics Cards -->
+<div class="row g-4 mb-4">
+    <div class="col-sm-6 col-xl-3">
+        <div class="card admin-card p-4 border-start border-4 border-primary">
+            <div class="d-flex justify-content-between align-items-center">
+                <div>
+                    <span class="text-muted small fw-bold">إجمالي المبيعات</span>
+                    <h3 class="fw-bold text-dark mt-2 mb-0">@Model.TotalSales.ToString("N0") ج.م</h3>
+                </div>
+                <div class="bg-primary-subtle text-primary p-3 rounded-circle fs-3">
+                    <i class="fa-solid fa-coins"></i>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-sm-6 col-xl-3">
+        <div class="card admin-card p-4 border-start border-4 border-success">
+            <div class="d-flex justify-content-between align-items-center">
+                <div>
+                    <span class="text-muted small fw-bold">إجمالي الطلبات</span>
+                    <h3 class="fw-bold text-dark mt-2 mb-0">@Model.TotalOrders</h3>
+                </div>
+                <div class="bg-success-subtle text-success p-3 rounded-circle fs-3">
+                    <i class="fa-solid fa-cart-shopping"></i>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-sm-6 col-xl-3">
+        <div class="card admin-card p-4 border-start border-4 border-warning">
+            <div class="d-flex justify-content-between align-items-center">
+                <div>
+                    <span class="text-muted small fw-bold">جاري التنفيذ يدوياً</span>
+                    <h3 class="fw-bold text-dark mt-2 mb-0">@Model.InProgressOrders</h3>
+                </div>
+                <div class="bg-warning-subtle text-warning p-3 rounded-circle fs-3">
+                    <i class="fa-solid fa-wand-magic-sparkles"></i>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-sm-6 col-xl-3">
+        <div class="card admin-card p-4 border-start border-4 border-info">
+            <div class="d-flex justify-content-between align-items-center">
+                <div>
+                    <span class="text-muted small fw-bold">طلبات قيد الانتظار</span>
+                    <h3 class="fw-bold text-dark mt-2 mb-0">@Model.PendingOrders</h3>
+                </div>
+                <div class="bg-info-subtle text-info p-3 rounded-circle fs-3">
+                    <i class="fa-solid fa-clock-rotate-left"></i>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row g-4 mb-4">
+    <div class="col-lg-8">
+        <div class="card admin-card p-4">
+            <div class="d-flex justify-content-between align-items-center mb-3">
+                <h5 class="fw-bold mb-0">أحدث طلبات المشغولات</h5>
+                <a asp-area="Admin" asp-controller="Orders" asp-action="Index" class="btn btn-sm btn-outline-secondary">عرض كل الطلبات</a>
+            </div>
+
+            @if (!Model.RecentOrders.Any())
+            {
+                <p class="text-muted text-center py-4">لا توجد طلبات مسجلة حتى الآن.</p>
+            }
+            else
+            {
+                <div class="table-responsive">
+                    <table class="table table-hover align-middle">
+                        <thead class="table-light">
+                            <tr>
+                                <th>رقم الطلب</th>
+                                <th>العميل</th>
+                                <th>المحافظة</th>
+                                <th>المبلغ</th>
+                                <th>الحالة</th>
+                                <th>إجراء</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var order in Model.RecentOrders)
+                            {
+                                <tr>
+                                    <td><strong>#@order.Id</strong></td>
+                                    <td>@order.CustomerName</td>
+                                    <td>@order.City</td>
+                                    <td class="fw-bold text-danger">@order.TotalAmount.ToString("N0") ج.م</td>
+                                    <td>
+                                        <span class="badge @(order.Status == "تم التسليم" ? "bg-success" : order.Status == "جاري التنفيذ اليدوي" ? "bg-warning text-dark" : "bg-secondary")">
+                                            @order.Status
+                                        </span>
+                                    </td>
+                                    <td>
+                                        <a asp-area="Admin" asp-controller="Orders" asp-action="Details" asp-route-id="@order.Id" class="btn btn-sm btn-light border">
+                                            عرض
+                                        </a>
+                                    </td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
+            }
+        </div>
+    </div>
+
+    <div class="col-lg-4">
+        <div class="card admin-card p-4 h-100">
+            <h5 class="fw-bold mb-3">حالة المخزون والمنتجات</h5>
+            <div class="mb-4 text-center py-3 bg-light rounded-4">
+                <span class="text-muted d-block small">إجمالي المنتجات المسجلة</span>
+                <span class="fs-2 fw-bold text-primary">@Model.TotalProducts</span>
+            </div>
+
+            <div class="d-flex justify-content-between align-items-center p-3 border rounded-3 mb-3 bg-warning-subtle">
+                <span class="small fw-bold">منتجات قاربت على النفاد (<= 3):</span>
+                <span class="badge bg-danger fs-6">@Model.LowStockProducts</span>
+            </div>
+
+            <a asp-area="Admin" asp-controller="Products" asp-action="Create" class="btn btn-primary w-100 py-2 rounded-pill mt-auto">
+                <i class="fa-solid fa-plus me-1"></i> إضافة منتج كروشيه جديد
+            </a>
+        </div>
+    </div>
+</div>
