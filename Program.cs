@@ -20,9 +20,9 @@ if (rawConnectionString.StartsWith("mysql://", StringComparison.OrdinalIgnoreCas
     var password = userInfo.Length > 1 ? userInfo[1] : "";
     var dbName = uri.AbsolutePath.TrimStart('/');
     var host = uri.Host;
-    var port = uri.Port > 0 ? uri.Port : 3306;
+    var dbPort = uri.Port > 0 ? uri.Port : 3306;
 
-    connectionString = $"Server={host};Port={port};Database={dbName};Uid={user};Pwd={password};SslMode=Preferred;";
+    connectionString = $"Server={host};Port={dbPort};Database={dbName};Uid={user};Pwd={password};SslMode=Preferred;";
 }
 
 builder.Services.AddDbContext<ApplicationDbContext>(options =>
@@ -65,8 +65,8 @@ builder.Services.AddHttpContextAccessor();
 builder.Services.AddScoped<ICartService, CartService>();
 
 // 4. Add MVC Controllers & Views
-var port = Environment.GetEnvironmentVariable("PORT") ?? "8080";
-builder.WebHost.UseUrls($"http://*:{port}");
+var appPort = Environment.GetEnvironmentVariable("PORT") ?? "8080";
+builder.WebHost.UseUrls($"http://*:{appPort}");
 
 builder.Services.AddControllersWithViews();
 

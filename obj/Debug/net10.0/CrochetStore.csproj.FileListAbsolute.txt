@@ -223,3 +223,4 @@ E:\Material-20260717T142356Z-1-001\Material\crochett\obj\Debug\net10.0\CrochetWe
 E:\Material-20260717T142356Z-1-001\Material\crochett\obj\Debug\net10.0\refint\CrochetWebRun.dll
 E:\Material-20260717T142356Z-1-001\Material\crochett\obj\Debug\net10.0\CrochetWebRun.pdb
 E:\Material-20260717T142356Z-1-001\Material\crochett\obj\Debug\net10.0\ref\CrochetWebRun.dll
+E:\Material-20260717T142356Z-1-001\Material\crochett\obj\Debug\net10.0\CrochetStore.sourcelink.json
