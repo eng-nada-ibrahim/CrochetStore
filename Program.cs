@@ -97,14 +97,18 @@ app.MapControllerRoute(
     name: "default",
     pattern: "{controller=Home}/{action=Index}/{id?}");
 
-// Auto Database Migration & Identity Roles Seeder
+// Auto Database Creation & Identity Roles Seeder
 using (var scope = app.Services.CreateScope())
 {
     var services = scope.ServiceProvider;
     try
     {
         var context = services.GetRequiredService<ApplicationDbContext>();
-        await context.Database.MigrateAsync();
+
+        // إنشاء كل الجداول تلقائياً في MySQL إذا لم تكن موجودة
+        await context.Database.EnsureCreatedAsync();
+
+        // Seed Roles & Default Admin
         await DbInitializer.SeedRolesAndAdminAsync(services);
     }
     catch (Exception ex)
