@@ -1,4 +1,5 @@
 using CrochetStore.Data;
+using CrochetStore.Models;
 using CrochetStore.Services;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
@@ -98,7 +99,7 @@ app.MapControllerRoute(
     name: "default",
     pattern: "{controller=Home}/{action=Index}/{id?}");
 
-// Auto Database Creation & Identity Roles Seeder
+// Auto Database Creation, Direct Data Seeding & Identity Roles Seeder
 using (var scope = app.Services.CreateScope())
 {
     var services = scope.ServiceProvider;
@@ -106,9 +107,91 @@ using (var scope = app.Services.CreateScope())
     {
         var context = services.GetRequiredService<ApplicationDbContext>();
 
-        // أضيفي سطر الحذف مؤقتاً هنا
-        context.Database.EnsureDeleted(); // يحذف الجداول القديمة الخاطئة
-        context.Database.EnsureCreated(); // يعيد إنشاء الجداول بالهيكل الجديد الكامل
+        context.Database.EnsureCreated(); // يعيد إنشاء الجداول بالهيكل الجديد الكامل على Railway
+
+        // 1. إدخال الفئات (Categories) مباشرة إذا كان الجدول فارغاً
+        if (!context.Categories.Any())
+        {
+            context.Categories.AddRange(
+                new Category { Id = 1001, Name = "شيلان", Description = "قطعة فنية تكتمل بها إطلالتكِ! شال كروشيه فاخر...", ImageUrl = "/images/scarf1.jpg", IsActive = true },
+                new Category { Id = 1002, Name = "شنط كروشيه", Description = "تشكيلة مميزة من الحقائب المصنوعة يدوياً...", ImageUrl = "/images/makramia.jpg", IsActive = true },
+                new Category { Id = 1003, Name = "كارديجان كروشيه", Description = "دفء يلتقي بالأناقة في كل غرزة!...", ImageUrl = "/images/jaket.jpg", IsActive = true },
+                new Category { Id = 1004, Name = "جونتي", Description = "قفازات كروشيه فريدة مصنوعة يدوياً...", ImageUrl = "/images/glaves.jpg", IsActive = true }
+            );
+            context.SaveChanges();
+        }
+
+        // 2. إدخال المنتجات (Products) مباشرة إذا كان الجدول فارغاً
+        if (!context.Products.Any())
+        {
+            context.Products.AddRange(
+                new Product
+                {
+                    Id = 1001,
+                    Name = "شال الحب",
+                    Description = "الطول: 180 سم. العرض: 50 سم. خامة فاخرة ومقاومة للتحبيب.",
+                    Price = 300.00m,
+                    StockQuantity = 3,
+                    ImageUrl = "/images/scarf2.jpg",
+                    YarnType = "خيط هيمالايا أنتي بيلينج",
+                    SizeOptions = "S,M,L,تفصيل",
+                    ProcessingDays = 6,
+                    IsCustomizable = true,
+                    IsFeatured = true,
+                    CategoryId = 1001,
+                    CreatedAt = DateTime.Now
+                },
+                new Product
+                {
+                    Id = 1002,
+                    Name = "شنطه باردو",
+                    Description = "خيط الصوف والأكريليك الفاخر يضفي ملمساً ناعماً.",
+                    Price = 400.00m,
+                    StockQuantity = 2,
+                    ImageUrl = "/images/bag w&b.jpg",
+                    YarnType = "قطن 100% طبيعي",
+                    SizeOptions = "S, M, L, XL, تفصيل خاص",
+                    ProcessingDays = 4,
+                    IsCustomizable = true,
+                    IsFeatured = false,
+                    CategoryId = 1002,
+                    CreatedAt = DateTime.Now
+                },
+                new Product
+                {
+                    Id = 1003,
+                    Name = "كارديجان زهرة الشتاء",
+                    Description = "كارديجان كروشيه مصنوع يدوياً بعناية بتصميم أنيق.",
+                    Price = 850.00m,
+                    StockQuantity = 3,
+                    ImageUrl = "/images/jaket1.jpg",
+                    YarnType = "قطن وصوف عالي الجودة",
+                    SizeOptions = "S, M, L, XL, تفصيل خاص",
+                    ProcessingDays = 7,
+                    IsCustomizable = true,
+                    IsFeatured = true,
+                    CategoryId = 1003,
+                    CreatedAt = DateTime.Now
+                },
+                new Product
+                {
+                    Id = 1004,
+                    Name = "جونتي القطّة",
+                    Description = "مثالي للارتداء اليومي في الشتاء واستخدام الهاتف.",
+                    Price = 400.00m,
+                    StockQuantity = 4,
+                    ImageUrl = "/images/glaves1.jpg",
+                    YarnType = "خيط قطن ناعم",
+                    SizeOptions = "S, M, L, XL, تفصيل خاص",
+                    ProcessingDays = 4,
+                    IsCustomizable = true,
+                    IsFeatured = false,
+                    CategoryId = 1004,
+                    CreatedAt = DateTime.Now
+                }
+            );
+            context.SaveChanges();
+        }
 
         // Seed Roles & Default Admin
         DbInitializer.SeedRolesAndAdminAsync(services).GetAwaiter().GetResult();

@@ -257,3 +257,5 @@ E:\Material-20260717T142356Z-1-001\Material\crochett\obj\Debug\net10.0\refint\Cr
 E:\Material-20260717T142356Z-1-001\Material\crochett\obj\Debug\net10.0\CrochetWebRun.pdb
 E:\Material-20260717T142356Z-1-001\Material\crochett\obj\Debug\net10.0\CrochetStore.genruntimeconfig.cache
 E:\Material-20260717T142356Z-1-001\Material\crochett\obj\Debug\net10.0\ref\CrochetWebRun.dll
+E:\Material-20260717T142356Z-1-001\Material\crochett\bin\Debug\net10.0\Categories.csv
+E:\Material-20260717T142356Z-1-001\Material\crochett\bin\Debug\net10.0\Products.csv

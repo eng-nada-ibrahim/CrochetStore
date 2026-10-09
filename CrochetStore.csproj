@@ -20,4 +20,12 @@
 		<PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="10.0.1" />
 		<PackageReference Include="MySql.EntityFrameworkCore" Version="10.0.1" />
 	</ItemGroup>
+	<ItemGroup>
+	  <None Update="Categories.csv">
+	    <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+	  </None>
+	  <None Update="Products.csv">
+	    <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+	  </None>
+	</ItemGroup>
 </Project>
