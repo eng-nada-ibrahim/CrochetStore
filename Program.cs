@@ -106,8 +106,6 @@ using (var scope = app.Services.CreateScope())
     {
         var context = services.GetRequiredService<ApplicationDbContext>();
 
-        // أضيفي سطر الحذف مؤقتاً هنا
-        context.Database.EnsureDeleted(); // يحذف الجداول القديمة الخاطئة
         context.Database.EnsureCreated(); // يعيد إنشاء الجداول بالهيكل الجديد الكامل
 
         // Seed Roles & Default Admin
