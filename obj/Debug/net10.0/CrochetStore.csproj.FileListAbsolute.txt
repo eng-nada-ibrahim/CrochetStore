@@ -225,3 +225,4 @@ E:\Material-20260717T142356Z-1-001\Material\crochett\obj\Debug\net10.0\ref\Croch
 E:\Material-20260717T142356Z-1-001\Material\crochett\obj\Debug\net10.0\CrochetStore.sourcelink.json
 E:\Material-20260717T142356Z-1-001\Material\crochett\bin\Debug\net10.0\MySqlConnector.dll
 E:\Material-20260717T142356Z-1-001\Material\crochett\bin\Debug\net10.0\Pomelo.EntityFrameworkCore.MySql.dll
+E:\Material-20260717T142356Z-1-001\Material\crochett\obj\Debug\net10.0\staticwebassets.upToDateCheck.txt

@@ -9,6 +9,8 @@
       "CrochetWebRun/1.0.0": {
         "dependencies": {
           "Microsoft.AspNetCore.Identity.EntityFrameworkCore": "10.0.0-preview.1.25120.3",
+          "Microsoft.EntityFrameworkCore": "10.0.12",
+          "Microsoft.EntityFrameworkCore.Relational": "10.0.12",
           "Microsoft.EntityFrameworkCore.SqlServer": "10.0.0-preview.1.25081.1",
           "Microsoft.EntityFrameworkCore.Tools": "10.0.0-preview.1.25081.1",
           "Pomelo.EntityFrameworkCore.MySql": "9.0.0"
@@ -54,7 +56,7 @@
       },
       "Microsoft.AspNetCore.Identity.EntityFrameworkCore/10.0.0-preview.1.25120.3": {
         "dependencies": {
-          "Microsoft.EntityFrameworkCore.Relational": "10.0.0-preview.1.25081.1"
+          "Microsoft.EntityFrameworkCore.Relational": "10.0.12"
         },
         "runtime": {
           "lib/net10.0/Microsoft.AspNetCore.Identity.EntityFrameworkCore.dll": {
@@ -451,22 +453,22 @@
           }
         }
       },
-      "Microsoft.EntityFrameworkCore/10.0.0-preview.1.25081.1": {
+      "Microsoft.EntityFrameworkCore/10.0.12": {
         "dependencies": {
-          "Microsoft.EntityFrameworkCore.Abstractions": "10.0.0-preview.1.25081.1"
+          "Microsoft.EntityFrameworkCore.Abstractions": "10.0.12"
         },
         "runtime": {
           "lib/net10.0/Microsoft.EntityFrameworkCore.dll": {
-            "assemblyVersion": "10.0.0.0",
-            "fileVersion": "10.0.25.8101"
+            "assemblyVersion": "10.0.12.0",
+            "fileVersion": "10.0.1226.42308"
           }
         }
       },
-      "Microsoft.EntityFrameworkCore.Abstractions/10.0.0-preview.1.25081.1": {
+      "Microsoft.EntityFrameworkCore.Abstractions/10.0.12": {
         "runtime": {
           "lib/net10.0/Microsoft.EntityFrameworkCore.Abstractions.dll": {
-            "assemblyVersion": "10.0.0.0",
-            "fileVersion": "10.0.25.8101"
+            "assemblyVersion": "10.0.12.0",
+            "fileVersion": "10.0.1226.42308"
           }
         }
       },
@@ -477,7 +479,7 @@
           "Microsoft.CodeAnalysis.CSharp": "4.8.0",
           "Microsoft.CodeAnalysis.CSharp.Workspaces": "4.8.0",
           "Microsoft.CodeAnalysis.Workspaces.MSBuild": "4.8.0",
-          "Microsoft.EntityFrameworkCore.Relational": "10.0.0-preview.1.25081.1",
+          "Microsoft.EntityFrameworkCore.Relational": "10.0.12",
           "Microsoft.Extensions.DependencyModel": "10.0.0-preview.1.25080.5",
           "Mono.TextTemplating": "3.0.0"
         },
@@ -488,21 +490,21 @@
           }
         }
       },
-      "Microsoft.EntityFrameworkCore.Relational/10.0.0-preview.1.25081.1": {
+      "Microsoft.EntityFrameworkCore.Relational/10.0.12": {
         "dependencies": {
-          "Microsoft.EntityFrameworkCore": "10.0.0-preview.1.25081.1"
+          "Microsoft.EntityFrameworkCore": "10.0.12"
         },
         "runtime": {
           "lib/net10.0/Microsoft.EntityFrameworkCore.Relational.dll": {
-            "assemblyVersion": "10.0.0.0",
-            "fileVersion": "10.0.25.8101"
+            "assemblyVersion": "10.0.12.0",
+            "fileVersion": "10.0.1226.42308"
           }
         }
       },
       "Microsoft.EntityFrameworkCore.SqlServer/10.0.0-preview.1.25081.1": {
         "dependencies": {
           "Microsoft.Data.SqlClient": "6.0.0-preview3.24332.3",
-          "Microsoft.EntityFrameworkCore.Relational": "10.0.0-preview.1.25081.1"
+          "Microsoft.EntityFrameworkCore.Relational": "10.0.12"
         },
         "runtime": {
           "lib/net10.0/Microsoft.EntityFrameworkCore.SqlServer.dll": {
@@ -640,7 +642,7 @@
       },
       "Pomelo.EntityFrameworkCore.MySql/9.0.0": {
         "dependencies": {
-          "Microsoft.EntityFrameworkCore.Relational": "10.0.0-preview.1.25081.1",
+          "Microsoft.EntityFrameworkCore.Relational": "10.0.12",
           "MySqlConnector": "2.4.0"
         },
         "runtime": {
@@ -874,19 +876,19 @@
       "path": "microsoft.data.sqlclient.sni.runtime/6.0.0-preview1.24226.4",
       "hashPath": "microsoft.data.sqlclient.sni.runtime.6.0.0-preview1.24226.4.nupkg.sha512"
     },
-    "Microsoft.EntityFrameworkCore/10.0.0-preview.1.25081.1": {
+    "Microsoft.EntityFrameworkCore/10.0.12": {
       "type": "package",
       "serviceable": true,
-      "sha512": "sha512-RtRpmCVfnP9OtU0AqZSBHE9f3FQfdn7IhlTzAR2DfMgFNCNj595AGjS3rLUlN7di2TYALZWn4Mo5h3PVn8Ui+w==",
-      "path": "microsoft.entityframeworkcore/10.0.0-preview.1.25081.1",
-      "hashPath": "microsoft.entityframeworkcore.10.0.0-preview.1.25081.1.nupkg.sha512"
+      "sha512": "sha512-e7OrVN8U5yr4kuwdTHWBHGVQIVsGfMkAr0Ej1/BnrS989Q0XBVANpIzNZ2bc1GvMZ0/XwMt5InTnmKskxGy99Q==",
+      "path": "microsoft.entityframeworkcore/10.0.12",
+      "hashPath": "microsoft.entityframeworkcore.10.0.12.nupkg.sha512"
     },
-    "Microsoft.EntityFrameworkCore.Abstractions/10.0.0-preview.1.25081.1": {
+    "Microsoft.EntityFrameworkCore.Abstractions/10.0.12": {
       "type": "package",
       "serviceable": true,
-      "sha512": "sha512-dl3xsKnuNvLPyFh/hSST0AIzuWj+my1vmOHS35lH/EQCcGxgpnQszhEZVyEkVLO0MgWEDo5l0meavi43XMSzwg==",
-      "path": "microsoft.entityframeworkcore.abstractions/10.0.0-preview.1.25081.1",
-      "hashPath": "microsoft.entityframeworkcore.abstractions.10.0.0-preview.1.25081.1.nupkg.sha512"
+      "sha512": "sha512-kDrux7T6C3V/YYYe2LXr7x6AEsVyq5Y2YoTE9er1SwbDtap3z1g8RgxNh5eKQVyB4T+DKvBBJ4Ezd/VZzJQJZg==",
+      "path": "microsoft.entityframeworkcore.abstractions/10.0.12",
+      "hashPath": "microsoft.entityframeworkcore.abstractions.10.0.12.nupkg.sha512"
     },
     "Microsoft.EntityFrameworkCore.Design/10.0.0-preview.1.25081.1": {
       "type": "package",
@@ -895,12 +897,12 @@
       "path": "microsoft.entityframeworkcore.design/10.0.0-preview.1.25081.1",
       "hashPath": "microsoft.entityframeworkcore.design.10.0.0-preview.1.25081.1.nupkg.sha512"
     },
-    "Microsoft.EntityFrameworkCore.Relational/10.0.0-preview.1.25081.1": {
+    "Microsoft.EntityFrameworkCore.Relational/10.0.12": {
       "type": "package",
       "serviceable": true,
-      "sha512": "sha512-3wN0a+A9LViE65C3ax62PIS3WePFdxzGOrjFSQqfjlEwEndHt1Rdf9fAreO+hNGEXLPjSifurwID+7K5EvwF6Q==",
-      "path": "microsoft.entityframeworkcore.relational/10.0.0-preview.1.25081.1",
-      "hashPath": "microsoft.entityframeworkcore.relational.10.0.0-preview.1.25081.1.nupkg.sha512"
+      "sha512": "sha512-OiHmr8XzX96dbgMsYGe8qoqg4KxibdZG2r0QUVJBGktFInOp8IrABe8jvcbo5hrqeWfbwpK7fCEBiEPbY/ik4A==",
+      "path": "microsoft.entityframeworkcore.relational/10.0.12",
+      "hashPath": "microsoft.entityframeworkcore.relational.10.0.12.nupkg.sha512"
     },
     "Microsoft.EntityFrameworkCore.SqlServer/10.0.0-preview.1.25081.1": {
       "type": "package",
