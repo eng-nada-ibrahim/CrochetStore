@@ -26,10 +26,9 @@ if (rawConnectionString.StartsWith("mysql://", StringComparison.OrdinalIgnoreCas
 }
 
 builder.Services.AddDbContext<ApplicationDbContext>(options =>
-    options.UseMySql(
-        connectionString,
-        new MySqlServerVersion(new Version(8, 0, 30))
-    ));
+    options.UseMySql(connectionString, new MySqlServerVersion(new Version(8, 0, 30)), mySqlOptions => {
+        mySqlOptions.EnableRetryOnFailure();
+    }));
 
 // 2. Add ASP.NET Core Identity
 builder.Services.AddIdentity<ApplicationUser, IdentityRole>(options =>
