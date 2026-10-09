@@ -18,8 +18,8 @@ namespace CrochetStore.Data
                 }
             }
 
-            // Create Default Admin User
-            var adminEmail = "admin@crochetstore.com";
+            // Create Default Admin User (حساب الأدمن الخاص بكِ)
+            var adminEmail = "admin_nada@gmail.com";
             var adminUser = await userManager.FindByEmailAsync(adminEmail);
             if (adminUser == null)
             {
@@ -27,14 +27,14 @@ namespace CrochetStore.Data
                 {
                     UserName = adminEmail,
                     Email = adminEmail,
-                    FullName = "مدير متجر الكروشيه",
+                    FullName = "ندا (مدير المتجر)",
                     EmailConfirmed = true,
                     PhoneNumber = "01000000000",
                     City = "القاهرة",
-                    Address = "شارع المعز - القاهرة"
+                    Address = "القاهرة"
                 };
 
-                var createResult = await userManager.CreateAsync(newAdmin, "Admin@123456");
+                var createResult = await userManager.CreateAsync(newAdmin, "nada1682005");
                 if (createResult.Succeeded)
                 {
                     await userManager.AddToRoleAsync(newAdmin, "Admin");
