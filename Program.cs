@@ -28,7 +28,7 @@ if (rawConnectionString.StartsWith("mysql://", StringComparison.OrdinalIgnoreCas
 builder.Services.AddDbContext<ApplicationDbContext>(options =>
     options.UseMySql(
         connectionString,
-        ServerVersion.AutoDetect(connectionString)
+        new MySqlServerVersion(new Version(8, 0, 30))
     ));
 
 // 2. Add ASP.NET Core Identity
@@ -53,7 +53,6 @@ builder.Services.ConfigureApplicationCookie(options =>
 
 // 3. Add Session Support & HttpContextAccessor for Cart
 builder.Services.AddDistributedMemoryCache();
-
 builder.Services.AddSession(options =>
 {
     options.IdleTimeout = TimeSpan.FromHours(48);
@@ -81,6 +80,7 @@ if (!app.Environment.IsDevelopment())
 
 app.UseHttpsRedirection();
 app.UseStaticFiles();
+
 app.UseRouting();
 
 app.UseSession();
