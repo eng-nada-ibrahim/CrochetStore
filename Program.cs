@@ -1,7 +1,7 @@
-using Microsoft.AspNetCore.Identity;
-using Microsoft.EntityFrameworkCore;
 using CrochetStore.Data;
 using CrochetStore.Services;
+using Microsoft.AspNetCore.Identity;
+using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -25,10 +25,12 @@ if (rawConnectionString.StartsWith("mysql://", StringComparison.OrdinalIgnoreCas
     connectionString = $"Server={host};Port={dbPort};Database={dbName};Uid={user};Pwd={password};SslMode=Preferred;";
 }
 
+string connectionString1 = connectionString;
+string connectionString11 = connectionString1;
+
+// التعديل هنا: استخدام المزود الرسمي لـ MySQL والدالة UseMySQL المتوافقة مع .NET 10
 builder.Services.AddDbContext<ApplicationDbContext>(options =>
-    options.UseMySql(connectionString, new MySqlServerVersion(new Version(8, 0, 30)), mySqlOptions => {
-        mySqlOptions.EnableRetryOnFailure();
-    }));
+    options.UseMySQL(connectionString11));
 
 // 2. Add ASP.NET Core Identity
 builder.Services.AddIdentity<ApplicationUser, IdentityRole>(options =>

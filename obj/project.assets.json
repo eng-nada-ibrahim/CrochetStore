@@ -2,6 +2,32 @@
   "version": 4,
   "targets": {
     "net10.0": {
+      "BouncyCastle.Cryptography/2.6.2": {
+        "type": "package",
+        "compile": {
+          "lib/net6.0/BouncyCastle.Cryptography.dll": {
+            "related": ".xml"
+          }
+        },
+        "runtime": {
+          "lib/net6.0/BouncyCastle.Cryptography.dll": {
+            "related": ".xml"
+          }
+        }
+      },
+      "Google.Protobuf/3.32.0": {
+        "type": "package",
+        "compile": {
+          "lib/net5.0/Google.Protobuf.dll": {
+            "related": ".pdb;.xml"
+          }
+        },
+        "runtime": {
+          "lib/net5.0/Google.Protobuf.dll": {
+            "related": ".pdb;.xml"
+          }
+        }
+      },
       "Humanizer.Core/2.14.1": {
         "type": "package",
         "compile": {
@@ -15,10 +41,53 @@
           }
         }
       },
-      "Microsoft.AspNetCore.Identity.EntityFrameworkCore/10.0.0": {
+      "K4os.Compression.LZ4/1.3.8": {
+        "type": "package",
+        "compile": {
+          "lib/net6.0/K4os.Compression.LZ4.dll": {
+            "related": ".xml"
+          }
+        },
+        "runtime": {
+          "lib/net6.0/K4os.Compression.LZ4.dll": {
+            "related": ".xml"
+          }
+        }
+      },
+      "K4os.Compression.LZ4.Streams/1.3.8": {
         "type": "package",
         "dependencies": {
-          "Microsoft.EntityFrameworkCore.Relational": "10.0.0"
+          "K4os.Compression.LZ4": "1.3.8",
+          "K4os.Hash.xxHash": "1.0.8"
+        },
+        "compile": {
+          "lib/net6.0/K4os.Compression.LZ4.Streams.dll": {
+            "related": ".xml"
+          }
+        },
+        "runtime": {
+          "lib/net6.0/K4os.Compression.LZ4.Streams.dll": {
+            "related": ".xml"
+          }
+        }
+      },
+      "K4os.Hash.xxHash/1.0.8": {
+        "type": "package",
+        "compile": {
+          "lib/net6.0/K4os.Hash.xxHash.dll": {
+            "related": ".xml"
+          }
+        },
+        "runtime": {
+          "lib/net6.0/K4os.Hash.xxHash.dll": {
+            "related": ".xml"
+          }
+        }
+      },
+      "Microsoft.AspNetCore.Identity.EntityFrameworkCore/10.0.1": {
+        "type": "package",
+        "dependencies": {
+          "Microsoft.EntityFrameworkCore.Relational": "10.0.1"
         },
         "compile": {
           "lib/net10.0/Microsoft.AspNetCore.Identity.EntityFrameworkCore.dll": {
@@ -700,11 +769,11 @@
           }
         }
       },
-      "Microsoft.EntityFrameworkCore/10.0.0": {
+      "Microsoft.EntityFrameworkCore/10.0.1": {
         "type": "package",
         "dependencies": {
-          "Microsoft.EntityFrameworkCore.Abstractions": "10.0.0",
-          "Microsoft.EntityFrameworkCore.Analyzers": "10.0.0"
+          "Microsoft.EntityFrameworkCore.Abstractions": "10.0.1",
+          "Microsoft.EntityFrameworkCore.Analyzers": "10.0.1"
         },
         "compile": {
           "lib/net10.0/Microsoft.EntityFrameworkCore.dll": {
@@ -720,7 +789,7 @@
           "buildTransitive/net10.0/Microsoft.EntityFrameworkCore.props": {}
         }
       },
-      "Microsoft.EntityFrameworkCore.Abstractions/10.0.0": {
+      "Microsoft.EntityFrameworkCore.Abstractions/10.0.1": {
         "type": "package",
         "compile": {
           "lib/net10.0/Microsoft.EntityFrameworkCore.Abstractions.dll": {
@@ -733,10 +802,10 @@
           }
         }
       },
-      "Microsoft.EntityFrameworkCore.Analyzers/10.0.0": {
+      "Microsoft.EntityFrameworkCore.Analyzers/10.0.1": {
         "type": "package"
       },
-      "Microsoft.EntityFrameworkCore.Design/10.0.0": {
+      "Microsoft.EntityFrameworkCore.Design/10.0.1": {
         "type": "package",
         "dependencies": {
           "Humanizer.Core": "2.14.1",
@@ -746,8 +815,8 @@
           "Microsoft.CodeAnalysis.CSharp": "4.14.0",
           "Microsoft.CodeAnalysis.CSharp.Workspaces": "4.14.0",
           "Microsoft.CodeAnalysis.Workspaces.MSBuild": "4.14.0",
-          "Microsoft.EntityFrameworkCore.Relational": "10.0.0",
-          "Microsoft.Extensions.DependencyModel": "10.0.0",
+          "Microsoft.EntityFrameworkCore.Relational": "10.0.1",
+          "Microsoft.Extensions.DependencyModel": "10.0.1",
           "Mono.TextTemplating": "3.0.0",
           "Newtonsoft.Json": "13.0.3"
         },
@@ -765,10 +834,10 @@
           "build/net10.0/Microsoft.EntityFrameworkCore.Design.props": {}
         }
       },
-      "Microsoft.EntityFrameworkCore.Relational/10.0.0": {
+      "Microsoft.EntityFrameworkCore.Relational/10.0.1": {
         "type": "package",
         "dependencies": {
-          "Microsoft.EntityFrameworkCore": "10.0.0"
+          "Microsoft.EntityFrameworkCore": "10.0.1"
         },
         "compile": {
           "lib/net10.0/Microsoft.EntityFrameworkCore.Relational.dll": {
@@ -781,13 +850,13 @@
           }
         }
       },
-      "Microsoft.EntityFrameworkCore.Tools/10.0.0": {
+      "Microsoft.EntityFrameworkCore.Tools/10.0.1": {
         "type": "package",
         "dependencies": {
-          "Microsoft.EntityFrameworkCore.Design": "10.0.0"
+          "Microsoft.EntityFrameworkCore.Design": "10.0.1"
         }
       },
-      "Microsoft.Extensions.DependencyModel/10.0.0": {
+      "Microsoft.Extensions.DependencyModel/10.0.1": {
         "type": "package",
         "compile": {
           "lib/net10.0/_._": {
@@ -831,15 +900,63 @@
           "buildTransitive/Mono.TextTemplating.targets": {}
         }
       },
-      "MySqlConnector/2.3.5": {
+      "MySql.Data/9.6.0": {
         "type": "package",
+        "dependencies": {
+          "BouncyCastle.Cryptography": "2.6.2",
+          "Google.Protobuf": "3.32.0",
+          "K4os.Compression.LZ4.Streams": "1.3.8",
+          "System.Configuration.ConfigurationManager": "8.0.0",
+          "System.Security.Permissions": "8.0.0",
+          "ZstdSharp.Port": "0.8.6"
+        },
         "compile": {
-          "lib/net8.0/MySqlConnector.dll": {
+          "lib/net10.0/MySql.Data.dll": {
             "related": ".xml"
           }
         },
         "runtime": {
-          "lib/net8.0/MySqlConnector.dll": {
+          "lib/net10.0/MySql.Data.dll": {
+            "related": ".xml"
+          }
+        },
+        "runtimeTargets": {
+          "runtimes/win-x64/native/comerr64.dll": {
+            "assetType": "native",
+            "rid": "win-x64"
+          },
+          "runtimes/win-x64/native/gssapi64.dll": {
+            "assetType": "native",
+            "rid": "win-x64"
+          },
+          "runtimes/win-x64/native/k5sprt64.dll": {
+            "assetType": "native",
+            "rid": "win-x64"
+          },
+          "runtimes/win-x64/native/krb5_64.dll": {
+            "assetType": "native",
+            "rid": "win-x64"
+          },
+          "runtimes/win-x64/native/krbcc64.dll": {
+            "assetType": "native",
+            "rid": "win-x64"
+          }
+        }
+      },
+      "MySql.EntityFrameworkCore/10.0.1": {
+        "type": "package",
+        "dependencies": {
+          "Microsoft.EntityFrameworkCore": "10.0.1",
+          "Microsoft.EntityFrameworkCore.Relational": "10.0.1",
+          "MySql.Data": "9.6.0"
+        },
+        "compile": {
+          "lib/net10.0/MySql.EntityFrameworkCore.dll": {
+            "related": ".xml"
+          }
+        },
+        "runtime": {
+          "lib/net10.0/MySql.EntityFrameworkCore.dll": {
             "related": ".xml"
           }
         }
@@ -853,23 +970,6 @@
         },
         "runtime": {
           "lib/net6.0/Newtonsoft.Json.dll": {
-            "related": ".xml"
-          }
-        }
-      },
-      "Pomelo.EntityFrameworkCore.MySql/8.0.3": {
-        "type": "package",
-        "dependencies": {
-          "Microsoft.EntityFrameworkCore.Relational": "[8.0.13, 8.0.999]",
-          "MySqlConnector": "2.3.5"
-        },
-        "compile": {
-          "lib/net8.0/Pomelo.EntityFrameworkCore.MySql.dll": {
-            "related": ".xml"
-          }
-        },
-        "runtime": {
-          "lib/net8.0/Pomelo.EntityFrameworkCore.MySql.dll": {
             "related": ".xml"
           }
         }
@@ -1006,7 +1106,7 @@
           "System.Security.Cryptography.ProtectedData": "9.0.0"
         },
         "compile": {
-          "lib/net9.0/_._": {
+          "lib/net9.0/System.Configuration.ConfigurationManager.dll": {
             "related": ".xml"
           }
         },
@@ -1095,7 +1195,7 @@
       "System.Security.Cryptography.ProtectedData/9.0.0": {
         "type": "package",
         "compile": {
-          "lib/net9.0/_._": {
+          "lib/net9.0/System.Security.Cryptography.ProtectedData.dll": {
             "related": ".xml"
           }
         },
@@ -1114,7 +1214,7 @@
           "System.Windows.Extensions": "9.0.0"
         },
         "compile": {
-          "lib/net9.0/_._": {
+          "lib/net9.0/System.Security.Permissions.dll": {
             "related": ".xml"
           }
         },
@@ -1130,7 +1230,7 @@
       "System.Windows.Extensions/9.0.0": {
         "type": "package",
         "compile": {
-          "lib/net9.0/_._": {
+          "lib/net9.0/System.Windows.Extensions.dll": {
             "related": ".xml"
           }
         },
@@ -1145,10 +1245,62 @@
             "rid": "win"
           }
         }
+      },
+      "ZstdSharp.Port/0.8.6": {
+        "type": "package",
+        "compile": {
+          "lib/net9.0/ZstdSharp.dll": {}
+        },
+        "runtime": {
+          "lib/net9.0/ZstdSharp.dll": {}
+        }
       }
     }
   },
   "libraries": {
+    "BouncyCastle.Cryptography/2.6.2": {
+      "sha512": "7oWOcvnntmMKNzDLsdxAYqApt+AjpRpP2CShjMfIa3umZ42UQMvH0tl1qAliYPNYO6vTdcGMqnRrCPmsfzTI1w==",
+      "type": "package",
+      "path": "bouncycastle.cryptography/2.6.2",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "LICENSE.md",
+        "README.md",
+        "bouncycastle.cryptography.2.6.2.nupkg.sha512",
+        "bouncycastle.cryptography.nuspec",
+        "lib/net461/BouncyCastle.Cryptography.dll",
+        "lib/net461/BouncyCastle.Cryptography.xml",
+        "lib/net6.0/BouncyCastle.Cryptography.dll",
+        "lib/net6.0/BouncyCastle.Cryptography.xml",
+        "lib/netstandard2.0/BouncyCastle.Cryptography.dll",
+        "lib/netstandard2.0/BouncyCastle.Cryptography.xml",
+        "packageIcon.png"
+      ]
+    },
+    "Google.Protobuf/3.32.0": {
+      "sha512": "fsKxV5bhcvXmZi+cUo5+IxzRMBHwHeFO8G5utNa9f+Mu37kmfy8JcUVvWPt4cX7EuQWAjjHUjZqVl7nGSTRHRg==",
+      "type": "package",
+      "path": "google.protobuf/3.32.0",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "google.protobuf.3.32.0.nupkg.sha512",
+        "google.protobuf.nuspec",
+        "lib/net45/Google.Protobuf.dll",
+        "lib/net45/Google.Protobuf.pdb",
+        "lib/net45/Google.Protobuf.xml",
+        "lib/net5.0/Google.Protobuf.dll",
+        "lib/net5.0/Google.Protobuf.pdb",
+        "lib/net5.0/Google.Protobuf.xml",
+        "lib/netstandard1.1/Google.Protobuf.dll",
+        "lib/netstandard1.1/Google.Protobuf.pdb",
+        "lib/netstandard1.1/Google.Protobuf.xml",
+        "lib/netstandard2.0/Google.Protobuf.dll",
+        "lib/netstandard2.0/Google.Protobuf.pdb",
+        "lib/netstandard2.0/Google.Protobuf.xml"
+      ]
+    },
     "Humanizer.Core/2.14.1": {
       "sha512": "lQKvtaTDOXnoVJ20ibTuSIOf2i0uO0MPbDhd1jm238I+U/2ZnRENj0cktKZhtchBMtCUSRQ5v4xBCUbKNmyVMw==",
       "type": "package",
@@ -1167,10 +1319,73 @@
         "logo.png"
       ]
     },
-    "Microsoft.AspNetCore.Identity.EntityFrameworkCore/10.0.0": {
-      "sha512": "mH1+58nbX5RWSd8hajSnXSdpQ1MN3oca488Zd+DvKX2nPTAyTVNRzubMV06BmPcjOZ9waLr/AjwcNiCQ8bCscQ==",
+    "K4os.Compression.LZ4/1.3.8": {
+      "sha512": "LhwlPa7c1zs1OV2XadMtAWdImjLIsqFJPoRcIWAadSRn0Ri1DepK65UbWLPmt4riLqx2d40xjXRk0ogpqNtK7g==",
       "type": "package",
-      "path": "microsoft.aspnetcore.identity.entityframeworkcore/10.0.0",
+      "path": "k4os.compression.lz4/1.3.8",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "k4os.compression.lz4.1.3.8.nupkg.sha512",
+        "k4os.compression.lz4.nuspec",
+        "lib/net462/K4os.Compression.LZ4.dll",
+        "lib/net462/K4os.Compression.LZ4.xml",
+        "lib/net5.0/K4os.Compression.LZ4.dll",
+        "lib/net5.0/K4os.Compression.LZ4.xml",
+        "lib/net6.0/K4os.Compression.LZ4.dll",
+        "lib/net6.0/K4os.Compression.LZ4.xml",
+        "lib/netstandard2.0/K4os.Compression.LZ4.dll",
+        "lib/netstandard2.0/K4os.Compression.LZ4.xml",
+        "lib/netstandard2.1/K4os.Compression.LZ4.dll",
+        "lib/netstandard2.1/K4os.Compression.LZ4.xml"
+      ]
+    },
+    "K4os.Compression.LZ4.Streams/1.3.8": {
+      "sha512": "P15qr8dZAeo9GvYbUIPEYFQ0MEJ0i5iqr37wsYeRC3la2uCldOoeCa6to0CZ1taiwxIV+Mk8NGuZi+4iWivK9w==",
+      "type": "package",
+      "path": "k4os.compression.lz4.streams/1.3.8",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "k4os.compression.lz4.streams.1.3.8.nupkg.sha512",
+        "k4os.compression.lz4.streams.nuspec",
+        "lib/net462/K4os.Compression.LZ4.Streams.dll",
+        "lib/net462/K4os.Compression.LZ4.Streams.xml",
+        "lib/net5.0/K4os.Compression.LZ4.Streams.dll",
+        "lib/net5.0/K4os.Compression.LZ4.Streams.xml",
+        "lib/net6.0/K4os.Compression.LZ4.Streams.dll",
+        "lib/net6.0/K4os.Compression.LZ4.Streams.xml",
+        "lib/netstandard2.0/K4os.Compression.LZ4.Streams.dll",
+        "lib/netstandard2.0/K4os.Compression.LZ4.Streams.xml",
+        "lib/netstandard2.1/K4os.Compression.LZ4.Streams.dll",
+        "lib/netstandard2.1/K4os.Compression.LZ4.Streams.xml"
+      ]
+    },
+    "K4os.Hash.xxHash/1.0.8": {
+      "sha512": "Wp2F7BamQ2Q/7Hk834nV9vRQapgcr8kgv9Jvfm8J3D0IhDqZMMl+a2yxUq5ltJitvXvQfB8W6K4F4fCbw/P6YQ==",
+      "type": "package",
+      "path": "k4os.hash.xxhash/1.0.8",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "k4os.hash.xxhash.1.0.8.nupkg.sha512",
+        "k4os.hash.xxhash.nuspec",
+        "lib/net462/K4os.Hash.xxHash.dll",
+        "lib/net462/K4os.Hash.xxHash.xml",
+        "lib/net5.0/K4os.Hash.xxHash.dll",
+        "lib/net5.0/K4os.Hash.xxHash.xml",
+        "lib/net6.0/K4os.Hash.xxHash.dll",
+        "lib/net6.0/K4os.Hash.xxHash.xml",
+        "lib/netstandard2.0/K4os.Hash.xxHash.dll",
+        "lib/netstandard2.0/K4os.Hash.xxHash.xml",
+        "lib/netstandard2.1/K4os.Hash.xxHash.dll",
+        "lib/netstandard2.1/K4os.Hash.xxHash.xml"
+      ]
+    },
+    "Microsoft.AspNetCore.Identity.EntityFrameworkCore/10.0.1": {
+      "sha512": "Dljm38k9d36gMXvNuhNrevoh2hh9wp7z3wcWN21qesm37GToDhYtdMjyQzw4a2J+rTJ19io0FDb0HQBtQVo7rw==",
+      "type": "package",
+      "path": "microsoft.aspnetcore.identity.entityframeworkcore/10.0.1",
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
@@ -1179,7 +1394,7 @@
         "THIRD-PARTY-NOTICES.TXT",
         "lib/net10.0/Microsoft.AspNetCore.Identity.EntityFrameworkCore.dll",
         "lib/net10.0/Microsoft.AspNetCore.Identity.EntityFrameworkCore.xml",
-        "microsoft.aspnetcore.identity.entityframeworkcore.10.0.0.nupkg.sha512",
+        "microsoft.aspnetcore.identity.entityframeworkcore.10.0.1.nupkg.sha512",
         "microsoft.aspnetcore.identity.entityframeworkcore.nuspec"
       ]
     },
@@ -2341,10 +2556,10 @@
         "microsoft.codeanalysis.workspaces.msbuild.nuspec"
       ]
     },
-    "Microsoft.EntityFrameworkCore/10.0.0": {
-      "sha512": "hHa2amRjMyBLUH/KTML6FgIAhZ0VFYkhCKwWEax0rO6iNeM1P5MflyeQLE5dniSIOZHc3Oqyv5UIyTFO4e1Auw==",
+    "Microsoft.EntityFrameworkCore/10.0.1": {
+      "sha512": "QsXvZ8G7Dl7x09rlq0b2dye7QqfReMq8yGdl7Mffi3Ip+aTa+JUMixBZ4lhCs9Ygjz2e9tiUACstxI+ADkwaFg==",
       "type": "package",
-      "path": "microsoft.entityframeworkcore/10.0.0",
+      "path": "microsoft.entityframeworkcore/10.0.1",
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
@@ -2353,14 +2568,14 @@
         "buildTransitive/net10.0/Microsoft.EntityFrameworkCore.props",
         "lib/net10.0/Microsoft.EntityFrameworkCore.dll",
         "lib/net10.0/Microsoft.EntityFrameworkCore.xml",
-        "microsoft.entityframeworkcore.10.0.0.nupkg.sha512",
+        "microsoft.entityframeworkcore.10.0.1.nupkg.sha512",
         "microsoft.entityframeworkcore.nuspec"
       ]
     },
-    "Microsoft.EntityFrameworkCore.Abstractions/10.0.0": {
-      "sha512": "C+TT9k7f1GQ8agOfV512K9iwrzi76RXVSDiLx+iWC9pz3QhEpSF1Dyk+FpVvd8ULQ+rqymfM8KQ7g48ttQVyMg==",
+    "Microsoft.EntityFrameworkCore.Abstractions/10.0.1": {
+      "sha512": "sp6Uq8Oc3RVGtmxLS3ZgzVeFHrpLNymsMudoeqRmB9pRTWgvq2S903sF5OnaaZmh4Bz6kpq7FwofE+DOhKJYvg==",
       "type": "package",
-      "path": "microsoft.entityframeworkcore.abstractions/10.0.0",
+      "path": "microsoft.entityframeworkcore.abstractions/10.0.1",
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
@@ -2368,28 +2583,28 @@
         "PACKAGE.md",
         "lib/net10.0/Microsoft.EntityFrameworkCore.Abstractions.dll",
         "lib/net10.0/Microsoft.EntityFrameworkCore.Abstractions.xml",
-        "microsoft.entityframeworkcore.abstractions.10.0.0.nupkg.sha512",
+        "microsoft.entityframeworkcore.abstractions.10.0.1.nupkg.sha512",
         "microsoft.entityframeworkcore.abstractions.nuspec"
       ]
     },
-    "Microsoft.EntityFrameworkCore.Analyzers/10.0.0": {
-      "sha512": "TxHQq0kn0tpYs2ljeRl8jtmWk720B0nteqI6mAZM77HWJpYT9Zj8SkkBBlj8K3Yeq18a6NBjz6YutE+shEk4Ag==",
+    "Microsoft.EntityFrameworkCore.Analyzers/10.0.1": {
+      "sha512": "Ug2lxkiz1bpnxQF/xdswLl5EBA6sAG2ig5nMjmtpQZO0C88ZnvUkbpH2vQq+8ultIRmvp5Ec2jndLGRMPjW0Ew==",
       "type": "package",
-      "path": "microsoft.entityframeworkcore.analyzers/10.0.0",
+      "path": "microsoft.entityframeworkcore.analyzers/10.0.1",
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
         "Icon.png",
         "analyzers/dotnet/cs/Microsoft.EntityFrameworkCore.Analyzers.dll",
         "docs/PACKAGE.md",
-        "microsoft.entityframeworkcore.analyzers.10.0.0.nupkg.sha512",
+        "microsoft.entityframeworkcore.analyzers.10.0.1.nupkg.sha512",
         "microsoft.entityframeworkcore.analyzers.nuspec"
       ]
     },
-    "Microsoft.EntityFrameworkCore.Design/10.0.0": {
-      "sha512": "R7BeFniEpBrHw8kKVtWiMG4PRAwJ4K1RZoQWB32Ak8ws3uvYH98DVp9Y2UBUgbwY5lR9wPlrxp7P3GGDQ7LUSQ==",
+    "Microsoft.EntityFrameworkCore.Design/10.0.1": {
+      "sha512": "0VcVx+hIo7j6bCjTlgPB1D4vHyLdkY3pVmlcsvRR8APEr0vRQ+Nj2Q3qYXTUeHgp8gdBxQFDVCfcAXknevD2KQ==",
       "type": "package",
-      "path": "microsoft.entityframeworkcore.design/10.0.0",
+      "path": "microsoft.entityframeworkcore.design/10.0.1",
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
@@ -2398,14 +2613,14 @@
         "build/net10.0/Microsoft.EntityFrameworkCore.Design.props",
         "lib/net10.0/Microsoft.EntityFrameworkCore.Design.dll",
         "lib/net10.0/Microsoft.EntityFrameworkCore.Design.xml",
-        "microsoft.entityframeworkcore.design.10.0.0.nupkg.sha512",
+        "microsoft.entityframeworkcore.design.10.0.1.nupkg.sha512",
         "microsoft.entityframeworkcore.design.nuspec"
       ]
     },
-    "Microsoft.EntityFrameworkCore.Relational/10.0.0": {
-      "sha512": "A3MX1ee7RDxWCUdx/KqP+74fbksz0UIhkVZh56YHvbPkEKsffCXgHU3LGkRDwqR/MrBNWLCWC/IVX79tzM30ZA==",
+    "Microsoft.EntityFrameworkCore.Relational/10.0.1": {
+      "sha512": "8/5kYGwKN6wtc89QqcPTOZDAJSMX8MzKCf5OmYjIfAHWTfsUEpGKYrdtfNk4X36rQ0BiU3n57Y4rbtnerzJN0Q==",
       "type": "package",
-      "path": "microsoft.entityframeworkcore.relational/10.0.0",
+      "path": "microsoft.entityframeworkcore.relational/10.0.1",
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
@@ -2413,21 +2628,21 @@
         "PACKAGE.md",
         "lib/net10.0/Microsoft.EntityFrameworkCore.Relational.dll",
         "lib/net10.0/Microsoft.EntityFrameworkCore.Relational.xml",
-        "microsoft.entityframeworkcore.relational.10.0.0.nupkg.sha512",
+        "microsoft.entityframeworkcore.relational.10.0.1.nupkg.sha512",
         "microsoft.entityframeworkcore.relational.nuspec"
       ]
     },
-    "Microsoft.EntityFrameworkCore.Tools/10.0.0": {
-      "sha512": "Gx6AWCf1CsBHTbvVVWBYBKp6hrwZt0IgBigoBPaybwOBG2EFIfZc7NP2BoR6r56YuuikbPIzCuvQuFYNnX43+A==",
+    "Microsoft.EntityFrameworkCore.Tools/10.0.1": {
+      "sha512": "9vVI/GEf7C/URRBATChRxcG+YgYC0QGnIC+kkvqFWPAGA6mU30PTQABTlm4yICpU+rVgmwDulRKjz2mcKgP92g==",
       "type": "package",
-      "path": "microsoft.entityframeworkcore.tools/10.0.0",
+      "path": "microsoft.entityframeworkcore.tools/10.0.1",
       "hasTools": true,
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
         "Icon.png",
         "docs/PACKAGE.md",
-        "microsoft.entityframeworkcore.tools.10.0.0.nupkg.sha512",
+        "microsoft.entityframeworkcore.tools.10.0.1.nupkg.sha512",
         "microsoft.entityframeworkcore.tools.nuspec",
         "tools/EntityFrameworkCore.PS2.psd1",
         "tools/EntityFrameworkCore.PS2.psm1",
@@ -2442,10 +2657,10 @@
         "tools/net472/win-x86/ef.exe"
       ]
     },
-    "Microsoft.Extensions.DependencyModel/10.0.0": {
-      "sha512": "RFYJR7APio/BiqdQunRq6DB+nDB6nc2qhHr77mlvZ0q0BT8PubMXN7XicmfzCbrDE/dzhBnUKBRXLTcqUiZDGg==",
+    "Microsoft.Extensions.DependencyModel/10.0.1": {
+      "sha512": "IiWPd4j8JLNjSkyXl5hvJwX2ZENDVQVPDHYgZmYdw8+YkY2xp9iQt0vjdnAQZLpo/ipeW1xgOqfSBEnivKWPYQ==",
       "type": "package",
-      "path": "microsoft.extensions.dependencymodel/10.0.0",
+      "path": "microsoft.extensions.dependencymodel/10.0.1",
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
@@ -2466,7 +2681,7 @@
         "lib/net9.0/Microsoft.Extensions.DependencyModel.xml",
         "lib/netstandard2.0/Microsoft.Extensions.DependencyModel.dll",
         "lib/netstandard2.0/Microsoft.Extensions.DependencyModel.xml",
-        "microsoft.extensions.dependencymodel.10.0.0.nupkg.sha512",
+        "microsoft.extensions.dependencymodel.10.0.1.nupkg.sha512",
         "microsoft.extensions.dependencymodel.nuspec",
         "useSharedDesignerContext.txt"
       ]
@@ -2517,33 +2732,59 @@
         "readme.md"
       ]
     },
-    "MySqlConnector/2.3.5": {
-      "sha512": "AmEfUPkFl+Ev6jJ8Dhns3CYHBfD12RHzGYWuLt6DfG6/af6YvOMyPz74ZPPjBYQGRJkumD2Z48Kqm8s5DJuhLA==",
+    "MySql.Data/9.6.0": {
+      "sha512": "jjCXNBxLLQHBcyYyOP4yp5jqljStH2qGFXXg3jBMdwYQk9ihpLH9BXoMyc/J3421pENBDjCf/eGi9Ow0Ib7LUA==",
       "type": "package",
-      "path": "mysqlconnector/2.3.5",
+      "path": "mysql.data/9.6.0",
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
+        "LICENSE",
+        "README",
         "README.md",
-        "lib/net462/MySqlConnector.dll",
-        "lib/net462/MySqlConnector.xml",
-        "lib/net471/MySqlConnector.dll",
-        "lib/net471/MySqlConnector.xml",
-        "lib/net48/MySqlConnector.dll",
-        "lib/net48/MySqlConnector.xml",
-        "lib/net6.0/MySqlConnector.dll",
-        "lib/net6.0/MySqlConnector.xml",
-        "lib/net7.0/MySqlConnector.dll",
-        "lib/net7.0/MySqlConnector.xml",
-        "lib/net8.0/MySqlConnector.dll",
-        "lib/net8.0/MySqlConnector.xml",
-        "lib/netstandard2.0/MySqlConnector.dll",
-        "lib/netstandard2.0/MySqlConnector.xml",
-        "lib/netstandard2.1/MySqlConnector.dll",
-        "lib/netstandard2.1/MySqlConnector.xml",
-        "logo.png",
-        "mysqlconnector.2.3.5.nupkg.sha512",
-        "mysqlconnector.nuspec"
+        "lib/net10.0/MySql.Data.dll",
+        "lib/net10.0/MySql.Data.xml",
+        "lib/net462/MySql.Data.dll",
+        "lib/net462/MySql.Data.xml",
+        "lib/net48/MySql.Data.dll",
+        "lib/net48/MySql.Data.xml",
+        "lib/net8.0/MySql.Data.dll",
+        "lib/net8.0/MySql.Data.xml",
+        "lib/net9.0/MySql.Data.dll",
+        "lib/net9.0/MySql.Data.xml",
+        "lib/netstandard2.0/MySql.Data.dll",
+        "lib/netstandard2.0/MySql.Data.xml",
+        "lib/netstandard2.1/MySql.Data.dll",
+        "lib/netstandard2.1/MySql.Data.xml",
+        "logo-mysql-170x115.png",
+        "mysql.data.9.6.0.nupkg.sha512",
+        "mysql.data.nuspec",
+        "runtimes/win-x64/native/comerr64.dll",
+        "runtimes/win-x64/native/gssapi64.dll",
+        "runtimes/win-x64/native/k5sprt64.dll",
+        "runtimes/win-x64/native/krb5_64.dll",
+        "runtimes/win-x64/native/krbcc64.dll"
+      ]
+    },
+    "MySql.EntityFrameworkCore/10.0.1": {
+      "sha512": "6QMi+HjVvB/xOSbnvBJ+rDUyCk/TcKvney3SegUa+/FxZMDOpymsFJL0cuT8wAMp6XE5xh/qpovj36fQdI7nHw==",
+      "type": "package",
+      "path": "mysql.entityframeworkcore/10.0.1",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "LICENSE",
+        "README",
+        "README.md",
+        "lib/net10.0/MySql.EntityFrameworkCore.dll",
+        "lib/net10.0/MySql.EntityFrameworkCore.xml",
+        "lib/net8.0/MySql.EntityFrameworkCore.dll",
+        "lib/net8.0/MySql.EntityFrameworkCore.xml",
+        "lib/net9.0/MySql.EntityFrameworkCore.dll",
+        "lib/net9.0/MySql.EntityFrameworkCore.xml",
+        "logo-mysql-170x115.png",
+        "mysql.entityframeworkcore.10.0.1.nupkg.sha512",
+        "mysql.entityframeworkcore.nuspec"
       ]
     },
     "Newtonsoft.Json/13.0.3": {
@@ -2574,21 +2815,6 @@
         "newtonsoft.json.13.0.3.nupkg.sha512",
         "newtonsoft.json.nuspec",
         "packageIcon.png"
-      ]
-    },
-    "Pomelo.EntityFrameworkCore.MySql/8.0.3": {
-      "sha512": "gOHP6v/nFp5V/FgHqv9mZocGqCLGofihEX9dTbLhiXX3H7SJHmGX70GIPUpiqLT+1jIfDxg1PZh9MTUKuk7Kig==",
-      "type": "package",
-      "path": "pomelo.entityframeworkcore.mysql/8.0.3",
-      "files": [
-        ".nupkg.metadata",
-        ".signature.p7s",
-        "README.md",
-        "icon.png",
-        "lib/net8.0/Pomelo.EntityFrameworkCore.MySql.dll",
-        "lib/net8.0/Pomelo.EntityFrameworkCore.MySql.xml",
-        "pomelo.entityframeworkcore.mysql.8.0.3.nupkg.sha512",
-        "pomelo.entityframeworkcore.mysql.nuspec"
       ]
     },
     "System.CodeDom/9.0.0": {
@@ -3010,16 +3236,36 @@
         "system.windows.extensions.nuspec",
         "useSharedDesignerContext.txt"
       ]
+    },
+    "ZstdSharp.Port/0.8.6": {
+      "sha512": "iP4jVLQoQmUjMU88g1WObiNr6YKZGvh4aOXn3yOJsHqZsflwRsxZPcIBvNXgjXO3vQKSLctXGLTpcBPLnWPS8A==",
+      "type": "package",
+      "path": "zstdsharp.port/0.8.6",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "lib/net462/ZstdSharp.dll",
+        "lib/net5.0/ZstdSharp.dll",
+        "lib/net6.0/ZstdSharp.dll",
+        "lib/net7.0/ZstdSharp.dll",
+        "lib/net8.0/ZstdSharp.dll",
+        "lib/net9.0/ZstdSharp.dll",
+        "lib/netcoreapp3.1/ZstdSharp.dll",
+        "lib/netstandard2.0/ZstdSharp.dll",
+        "lib/netstandard2.1/ZstdSharp.dll",
+        "zstdsharp.port.0.8.6.nupkg.sha512",
+        "zstdsharp.port.nuspec"
+      ]
     }
   },
   "projectFileDependencyGroups": {
     "net10.0": [
-      "Microsoft.AspNetCore.Identity.EntityFrameworkCore >= 10.0.0",
-      "Microsoft.EntityFrameworkCore >= 10.0.0",
-      "Microsoft.EntityFrameworkCore.Design >= 10.0.0",
-      "Microsoft.EntityFrameworkCore.Relational >= 10.0.0",
-      "Microsoft.EntityFrameworkCore.Tools >= 10.0.0",
-      "Pomelo.EntityFrameworkCore.MySql >= 8.0.3"
+      "Microsoft.AspNetCore.Identity.EntityFrameworkCore >= 10.0.1",
+      "Microsoft.EntityFrameworkCore >= 10.0.1",
+      "Microsoft.EntityFrameworkCore.Design >= 10.0.1",
+      "Microsoft.EntityFrameworkCore.Relational >= 10.0.1",
+      "Microsoft.EntityFrameworkCore.Tools >= 10.0.1",
+      "MySql.EntityFrameworkCore >= 10.0.1"
     ]
   },
   "packageFolders": {
@@ -3076,31 +3322,31 @@
         "dependencies": {
           "Microsoft.AspNetCore.Identity.EntityFrameworkCore": {
             "target": "Package",
-            "version": "[10.0.0, )"
+            "version": "[10.0.1, )"
           },
           "Microsoft.EntityFrameworkCore": {
             "target": "Package",
-            "version": "[10.0.0, )"
+            "version": "[10.0.1, )"
           },
           "Microsoft.EntityFrameworkCore.Design": {
             "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
             "suppressParent": "All",
             "target": "Package",
-            "version": "[10.0.0, )"
+            "version": "[10.0.1, )"
           },
           "Microsoft.EntityFrameworkCore.Relational": {
             "target": "Package",
-            "version": "[10.0.0, )"
+            "version": "[10.0.1, )"
           },
           "Microsoft.EntityFrameworkCore.Tools": {
             "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
             "suppressParent": "All",
             "target": "Package",
-            "version": "[10.0.0, )"
+            "version": "[10.0.1, )"
           },
-          "Pomelo.EntityFrameworkCore.MySql": {
+          "MySql.EntityFrameworkCore": {
             "target": "Package",
-            "version": "[8.0.3, )"
+            "version": "[10.0.1, )"
           }
         },
         "imports": [
@@ -3539,17 +3785,5 @@
         }
       }
     }
-  },
-  "logs": [
-    {
-      "code": "NU1608",
-      "level": "Warning",
-      "warningLevel": 1,
-      "message": "Detected package version outside of dependency constraint: Pomelo.EntityFrameworkCore.MySql 8.0.3 requires Microsoft.EntityFrameworkCore.Relational (>= 8.0.13 && <= 8.0.999) but version Microsoft.EntityFrameworkCore.Relational 10.0.0 was resolved.",
-      "libraryId": "Microsoft.EntityFrameworkCore.Relational",
-      "targetGraphs": [
-        "net10.0"
-      ]
-    }
-  ]
+  }
 }
